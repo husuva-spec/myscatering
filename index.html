@@ -279,7 +279,7 @@ html{scroll-padding-top:110px}
 
   <h2 class="h2">Así llegan tus pedidos</h2>
   <p class="desc" style="margin:-6px 0 12px">Fotos reales: bandejas selladas con nuestra etiqueta, listas para servir.</p>
-  <div class="strip"><img src="r0015.jpg" alt="Bandeja de pavo con etiqueta M&S" loading="lazy"><img src="r0022.jpg" alt="Bandeja lista para entregar" loading="lazy"><img src="r0040.jpg" alt="Bandeja de pavo sellada" loading="lazy"><img src="r0012.jpg" alt="Bandeja de cena navideña" loading="lazy"><img src="r0020.jpg" alt="Keke navideño en caja" loading="lazy"><img src="r0046.jpg" alt="Keke navideño de regalo" loading="lazy"></div>
+  <div class="strip" id="galPedidos"><img src="r0015.jpg" alt="Bandeja de pavo con etiqueta M&S" loading="lazy"><img src="r0022.jpg" alt="Bandeja lista para entregar" loading="lazy"><img src="r0040.jpg" alt="Bandeja de pavo sellada" loading="lazy"><img src="r0012.jpg" alt="Bandeja de cena navideña" loading="lazy"><img src="r0020.jpg" alt="Keke navideño en caja" loading="lazy"><img src="r0046.jpg" alt="Keke navideño de regalo" loading="lazy"></div>
   <div class="chef">
    <img class="chefImg" src="maribel-retrato.jpg" alt="Maribel, chef y fundadora de M&amp;S Catering">
    <div>
@@ -368,7 +368,7 @@ html{scroll-padding-top:110px}
    </div>
   </div>
   <h2 class="h2">Nuestros trabajos</h2><p class="desc" style="margin:-6px 0 14px">Fotos reales de eventos y pedidos preparados por Maribel.</p>
-  <div class="gal"><img src="maribel-buffet.jpg" alt="Maribel con su buffet criollo en ollas de barro" loading="lazy"><img src="ollas-menu.jpg" alt="Menú criollo en ollas de barro" loading="lazy"><img src="cajachina-pro.jpg" alt="Las cajas chinas de M&amp;S Catering" loading="lazy"><img src="panceta-en-caja.jpg" alt="Panceta dorándose en la caja china" loading="lazy"><img src="r0007.jpg" alt="Buffet navideño en oficina" loading="lazy"><img src="crema.jpg" alt="Crema volteada" loading="lazy"><img src="g0028.jpg" alt="Mesa de piqueos" loading="lazy"><img src="criollo.jpg" alt="Buffet criollo en ollas de barro" loading="lazy"><img src="asado-rodajas.jpg" alt="Asado en rodajas" loading="lazy"><img src="r0014.jpg" alt="Pavo en rodajas decorado" loading="lazy"><img src="g0017.jpg" alt="Árbol de bocaditos" loading="lazy"><img src="g0047.jpg" alt="Tabla de quesos y jamones" loading="lazy"></div>
+  <div class="gal" id="galTrabajos"><img src="maribel-buffet.jpg" alt="Maribel con su buffet criollo en ollas de barro" loading="lazy"><img src="ollas-menu.jpg" alt="Menú criollo en ollas de barro" loading="lazy"><img src="cajachina-pro.jpg" alt="Las cajas chinas de M&amp;S Catering" loading="lazy"><img src="panceta-en-caja.jpg" alt="Panceta dorándose en la caja china" loading="lazy"><img src="r0007.jpg" alt="Buffet navideño en oficina" loading="lazy"><img src="crema.jpg" alt="Crema volteada" loading="lazy"><img src="g0028.jpg" alt="Mesa de piqueos" loading="lazy"><img src="criollo.jpg" alt="Buffet criollo en ollas de barro" loading="lazy"><img src="asado-rodajas.jpg" alt="Asado en rodajas" loading="lazy"><img src="r0014.jpg" alt="Pavo en rodajas decorado" loading="lazy"><img src="g0017.jpg" alt="Árbol de bocaditos" loading="lazy"><img src="g0047.jpg" alt="Tabla de quesos y jamones" loading="lazy"></div>
   <div style="margin-top:16px"><a class="btn red" id="waCorp" href="#">Pedir cotización para mi evento</a></div>
  </div>
 </section>
@@ -474,7 +474,7 @@ let CARTA = [
  ]},
 ];
 const BOCADITOS=[{id:"bocaditos", t:"Bocaditos para eventos", sub:"Salados y dulces, por ciento", desc:"Elige tus bocaditos de la lista y dinos cuántos necesitas.", p:null, img:"bites"}];
-const EVENTOS=[
+let EVENTOS=[
  {id:"buffet", t:"Buffet para eventos", sub:"Sociales y corporativos", desc:"Buffets criollos en ollas de barro, de carnes o navideños, con montaje y decoración.", p:null, img:"maribel-buffet"},
  {id:"boxcorp", t:"Cajas de regalo corporativas", sub:"Para colaboradores y clientes", desc:"Cajas personalizadas con productos gourmet y tu tarjeta.", p:null, img:"boxcorp"},
  {id:"box", t:"Cajas de regalo y desayunos", sub:"Cumpleaños y fechas especiales", desc:"Sorprende a alguien especial con una caja de regalo.", p:null, img:"box"},
@@ -515,11 +515,14 @@ const today=limaDay();
 const forceSeason=/[?&]navidad/.test(location.search);
 let SP={id:"navidad",n:"Navidad 2026",e:"🎄",ini:SEASON.start,fin:SEASON.end,x:"",img:"cena4",col:["#A8321E","#7D2414","#4E6B4B"],tpl:"navidad",packs:null,builtin:true};
 let seasonOn=forceSeason||(today>=SP.ini&&today<=SP.fin);
-let BIZ=null;
+let BIZ=null, GAL=null;
 function lum(h){const n=parseInt(String(h).slice(1),16);if(isNaN(n))return 0;const c=[n>>16,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
 function applyData(d){
   if(!d||!Array.isArray(d.dishes)||!Array.isArray(d.cats))return false;
-  const cats=d.cats.map(c=>({cat:String(c.n||""),icon:String(c.e||""),items:d.dishes.filter(x=>x&&x.c===c.id&&x.t).map(x=>({id:String(x.id),t:String(x.t),sub:String(x.sub||""),desc:String(x.desc||""),p:(x.p===null||x.p===""||x.p===undefined||isNaN(+x.p))?null:+x.p,img:String(x.img||"")}))})).filter(c=>c.cat&&c.items.length);
+  const mapD=x=>({id:String(x.id),t:String(x.t),sub:String(x.sub||""),desc:String(x.desc||""),p:(x.p===null||x.p===""||x.p===undefined||isNaN(+x.p))?null:+x.p,img:String(x.img||"")});
+  if(d.cats.some(c=>c.id==="eventos"))EVENTOS=d.dishes.filter(x=>x&&x.c==="eventos"&&x.t).map(mapD);
+  if(d.gal)GAL=d.gal;
+  const cats=d.cats.filter(c=>c.id!=="eventos").map(c=>({cat:String(c.n||""),icon:String(c.e||""),items:d.dishes.filter(x=>x&&x.c===c.id&&x.t).map(x=>({id:String(x.id),t:String(x.t),sub:String(x.sub||""),desc:String(x.desc||""),p:(x.p===null||x.p===""||x.p===undefined||isNaN(+x.p))?null:+x.p,img:String(x.img||"")}))})).filter(c=>c.cat&&c.items.length);
   if(cats.length)CARTA=cats;
   const b=d.biz||{};
   const wa=String(b.wa||"").replace(/\D/g,"");if(wa.length>=9)WA=wa.length===9?"51"+wa:wa;
@@ -589,6 +592,7 @@ function paint(){
   $("#catnav").innerHTML=[`<a href="#carta" data-f="" class="on">Todo</a>`,...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}" data-f="${slug(c.cat)}">${esc(c.icon+" "+c.cat)}</a>`),`<a href="#carta-bocaditos" data-f="bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
   $("#g-bocaditos").innerHTML=BOCADITOS.map(card).join("");
   $("#g-eventos").innerHTML=EVENTOS.map(card).join("");
+  if(GAL){const g=(el,a,eager)=>{if(Array.isArray(a)&&a.length)$(el).innerHTML=a.filter(x=>x&&x.img).map(x=>`<img src="${esc(IM(x.img))}" alt="${esc(x.alt||"")}" loading="lazy">`).join("");};g("#galPedidos",GAL.pedidos);g("#galTrabajos",GAL.trabajos);}
   const spTile=SP.builtin?["#temporada","cena4","🎄 Especial Navidad","Cenas, bites, tablas y dulces"]:["#temporada",SP.img||(SPI[0]&&SPI[0].img)||"cena4",`${SP.e||"🎉"} Especial ${spShort()}`,SP.x||SPI.map(i=>i.t).join(" · ")];
   $("#tiles").innerHTML=[...(seasonOn?[spTile]:[]),
     ...CARTA.map(c=>["#carta-"+slug(c.cat),(c.items.find(i=>i.img)||{}).img||"especial",c.icon+" "+c.cat,c.items.map(i=>i.t).join(" · ")]),

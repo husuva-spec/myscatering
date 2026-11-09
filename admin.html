@@ -200,6 +200,19 @@ textarea.inp{resize:vertical;min-height:84px}
 .pkph img{width:40px;height:40px;border-radius:8px;object-fit:cover}
 .pkph input{position:absolute;inset:0;opacity:0;cursor:pointer}
 .pack{cursor:pointer}
+.chips{flex-wrap:wrap;overflow:visible}
+.act.wide{grid-column:1/-1;min-height:0;flex-direction:row;align-items:center;gap:14px}
+.act.wide>div{display:flex;flex-direction:column;gap:2px}
+.gal-ed{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.gt{position:relative;border-radius:14px;overflow:hidden;background:var(--sunk);aspect-ratio:1}
+.gt img{width:100%;height:100%;object-fit:cover;display:block}
+.gt .bar3{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;padding:6px;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.gt .bar3 button{width:36px;height:36px;border:0;border-radius:10px;background:rgba(255,255,255,.92);color:#3B2A24;font-size:18px;font-weight:800;cursor:pointer}
+.gt .bar3 button.x{background:var(--danger);color:#fff}
+.gt .bar3 button:disabled{opacity:.35}
+.gt .new{position:absolute;top:6px;left:6px;background:var(--leaf);color:#fff;font-size:12px;font-weight:800;border-radius:99px;padding:2px 8px}
+.addph{position:relative;display:grid;place-items:center;text-align:center;border:2px dashed var(--leaf);color:var(--leaf);border-radius:14px;aspect-ratio:1;font-weight:800;cursor:pointer;padding:8px}
+.addph input{position:absolute;inset:0;opacity:0;cursor:pointer}
 </style>
 </head><body>
 <div class="app">
@@ -220,7 +233,7 @@ textarea.inp{resize:vertical;min-height:84px}
 const API = "https://script.google.com/macros/s/AKfycbyS66ecYfDjFhI3RIrTXlCjBLe8u6jhkqxbQK2F0_foH7Nv4CBxDUDDC_xHabKB0PWe/exec";
 
 // ---------- estado ----------
-let CATS = [], DISHES = [], SPECIALS = [], BIZ = {}, LOG = [];
+let CATS = [], DISHES = [], SPECIALS = [], BIZ = {}, LOG = [], GAL = { pedidos: [], trabajos: [] };
 let PIN = "";
 const THEMES = {
   navidad: ["Navidad", "#A8321E", "#7D2414", "#4E6B4B", "🎄"],
@@ -274,7 +287,7 @@ async function api(body, msg) {
   } finally { busy(false) }
 }
 function load(d) {
-  CATS = d.cats || []; BIZ = d.biz || {}; LOG = d.log || [];
+  CATS = d.cats || []; BIZ = d.biz || {}; LOG = d.log || []; GAL = d.gal || { pedidos: [], trabajos: [] };
   DISHES = (d.dishes || []).map(x => ({ id: x.id, cat: x.c, t: x.t, s: x.sub, d: x.desc, p: x.p, img: x.img, on: x.on }));
   SPECIALS = (d.specials || []).map(s => ({ ...s, packs: (s.packs || []).map(p => ({ ...p })) }));
 }
@@ -327,6 +340,7 @@ function home() {
     <a class="act" href="#platos"><span class="ic">🍽️</span><b>Mis platos</b><span>${DISHES.length} platos · cambiar precio u ocultar</span></a>
     <a class="act" href="#especiales"><span class="ic">🎉</span><b>Especiales</b><span>Navidad, Año Nuevo, Fiestas Patrias…</span></a>
     <a class="act" href="#negocio"><span class="ic">⚙️</span><b>Mi negocio</b><span>WhatsApp, cuentas y textos</span></a>
+    <a class="act wide" href="#fotos"><span class="ic">🖼️</span><div><b>Fotos de la web</b><span>“Así llegan tus pedidos” y “Nuestros trabajos”</span></div></a>
   </div>
   <h2 class="h2">Últimos cambios</h2>
   ${LOG.length ? `<ul class="log">${LOG.slice(0, 8).map(l => `<li><span>${esc(l[0])}</span><span>${esc(l[1])}</span><time>${esc(ago(l[2]))}</time></li>`).join("")}</ul>` : `<p class="sub">Aún no hay cambios.</p>`}
@@ -606,9 +620,48 @@ function business() {
   };
 }
 
+// fotos de la web (galerías)
+const GALS = [["pedidos", "Así llegan tus pedidos", "Fotos de tus bandejas y pedidos listos para entregar. Se ven en la portada.", "Pedido listo de M&S Catering"],
+  ["trabajos", "Nuestros trabajos", "Fotos de eventos y pedidos. Se ven en “Eventos y regalos”. Se ve mejor con 4, 8 o 12 fotos.", "Trabajo de M&S Catering"]];
+function photos() {
+  const st = {}; GALS.forEach(([k]) => st[k] = (GAL[k] || []).map(x => ({ ...x })));
+  view.innerHTML = `<div class="vhead"><h1>Fotos de la web</h1></div>
+  <p class="sub">Toca <b>＋</b> para agregar fotos, <b>×</b> para quitar una y <b>← →</b> para cambiar el orden. Luego toca <b>Guardar</b>.</p>
+  ${GALS.map(([k, t, h]) => `<div class="card" style="margin-bottom:16px"><h3>${t}</h3><span class="hint">${h}</span><div class="gal-ed" id="g-${k}"></div>
+    <div style="display:flex;gap:10px"><button type="button" class="btn ghost" data-gc="${k}" style="flex:none">Deshacer</button><button type="button" class="btn go" data-gs="${k}">Guardar ${t}</button></div></div>`).join("")}`;
+  const draw = k => {
+    const a = st[k];
+    $("#g-" + k).innerHTML = a.map((x, i) => `<div class="gt"><img src="${x._ph || IM(x.img)}" alt="">${x._ph ? '<span class="new">Nueva</span>' : ""}
+      <div class="bar3"><button type="button" data-mv="${k}|${i}|-1" ${i ? "" : "disabled"} aria-label="Mover a la izquierda">←</button><button type="button" class="x" data-rm="${k}|${i}" aria-label="Quitar foto">×</button><button type="button" data-mv="${k}|${i}|1" ${i < a.length - 1 ? "" : "disabled"} aria-label="Mover a la derecha">→</button></div></div>`).join("")
+      + `<label class="addph">＋<br>Agregar fotos<input type="file" accept="image/*" multiple data-add="${k}" aria-label="Agregar fotos"></label>`;
+  };
+  GALS.forEach(([k]) => draw(k));
+  view.onclick = async e => {
+    const mv = e.target.closest("[data-mv]"), rm = e.target.closest("[data-rm]"), gs = e.target.closest("[data-gs]"), gc = e.target.closest("[data-gc]");
+    if (mv) { const [k, i, d] = mv.dataset.mv.split("|"); const a = st[k], n = +i + +d; [a[i], a[n]] = [a[n], a[i]]; draw(k); }
+    if (rm) { const [k, i] = rm.dataset.rm.split("|"); st[k].splice(+i, 1); draw(k); }
+    if (gc) { const k = gc.dataset.gc; st[k] = (GAL[k] || []).map(x => ({ ...x })); draw(k); }
+    if (gs) {
+      const k = gs.dataset.gs, g = GALS.find(x => x[0] === k), a = st[k];
+      if (!a.length) { toast("Deja al menos una foto", ""); return; }
+      const ph = {}; a.forEach((x, i) => { if (x._ph) ph[i] = x._ph; });
+      const n = Object.keys(ph).length;
+      try { await api({ a: "saveGallery", key: k, items: a.map(x => ({ img: x._ph ? "" : x.img, alt: x.alt || g[3] })), photos: ph }, n ? `Subiendo ${n} ${n === 1 ? "foto" : "fotos"}…` : "Guardando…"); toast("Fotos guardadas"); photos(); }
+      catch (er) { fail(er) }
+    }
+  };
+  view.onchange = async e => {
+    const k = e.target.dataset && e.target.dataset.add; if (!k) return;
+    const files = [...e.target.files]; if (!files.length) return;
+    try { busy(true, "Preparando fotos…"); for (const f of files) st[k].push({ img: "", alt: GALS.find(x => x[0] === k)[3], _ph: await shrink(f, 1400) }); }
+    catch (er) { fail(er) } finally { busy(false); draw(k); }
+  };
+}
+
 // ---------- rutas ----------
 function route() {
   if (!PIN) { loginView(); return; }
+  view.onclick = null; view.onchange = null;
   const h = decodeURIComponent(location.hash.slice(1)) || "inicio";
   $("#fab").hidden = h !== "platos"; $("#back").hidden = h === "inicio";
   if (h === "inicio") home();
@@ -618,6 +671,7 @@ function route() {
   else if (h === "especiales") specials();
   else if (h.startsWith("especial-")) specialForm(h.slice(9));
   else if (h === "negocio") business();
+  else if (h === "fotos") photos();
   else home();
   window.scrollTo(0, 0);
 }
