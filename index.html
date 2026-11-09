@@ -443,7 +443,8 @@ const ESP=["Alitas","Mini brocheta de pollo","Langostinos al panko","Tequeños d
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t);
+const SITE="https://husuva-spec.github.io/myscatering/";
+const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t.trimEnd()+"\n\n🛒 Catálogo y pedidos: "+SITE);
 function money(n){return "S/ "+n.toLocaleString("es-PE")}
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1800)}
 
