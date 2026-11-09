@@ -203,6 +203,23 @@ html{scroll-padding-top:110px}
 .espbox>img{width:150px;height:150px;border-radius:50%;object-fit:cover;flex:none}
 .f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:640px){.espbox{flex-direction:column}.espbox>img{width:110px;height:110px}.f2{grid-template-columns:1fr}}
+
+.chef{display:flex;gap:28px;align-items:center;background:#fff;border-radius:28px;padding:26px;margin-top:34px;box-shadow:0 6px 24px rgba(59,42,36,.08)}
+.chef>img{width:210px;height:210px;border-radius:50%;object-fit:cover;flex:none;border:6px solid var(--cream2);box-shadow:0 10px 26px rgba(59,42,36,.18)}
+.chef h3{font-family:'Playfair Display';color:var(--red)}
+.chef p{font-size:17px}
+@media(max-width:640px){.chef{flex-direction:column;text-align:center;padding:22px 18px}.chef>img{width:170px;height:170px}}
+
+#catnav{position:sticky;top:104px;z-index:5;background:var(--cream);padding:12px 0 10px;margin-bottom:6px}
+#catnav a.on{background:var(--green);color:#fff}
+.ctag{background:#EEF3EC;color:var(--green);letter-spacing:.04em;text-transform:none;font-size:13px}
+#cartaGrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:8px}
+@media(min-width:900px){#cartaGrid{grid-template-columns:repeat(3,1fr)}}
+
+.strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.strip img{width:220px;height:220px;object-fit:cover;border-radius:18px;flex:none;scroll-snap-align:start}
+@media(max-width:640px){.strip img{width:170px;height:170px}}
+.gal{grid-template-columns:repeat(4,1fr)}
 </style>
 </head>
 <body>
@@ -228,7 +245,7 @@ html{scroll-padding-top:110px}
    <div class="chips"><a class="btn" href="#carta">Ver la carta</a><a class="btn ghost" id="waTop" href="#">Escríbenos</a></div>
   </div>
   <div class="pic">
-   <img class="big" src="panceta.jpg" alt="Panceta a la caja china">
+   <img class="big" src="panceta-tabla.jpg" alt="Panceta a la caja china de Maribel">
    <img class="sm" src="causa.jpg" alt="Causa rellena" style="left:-6%;bottom:-2%">
    <img class="sm" src="torta.jpg" alt="Torta" style="right:-4%;bottom:6%;width:26%">
   </div>
@@ -245,6 +262,21 @@ html{scroll-padding-top:110px}
 
   <h2 class="h2">¿Qué se te antoja?</h2>
   <div class="tiles" id="tiles"></div>
+
+  <h2 class="h2">Así llegan tus pedidos</h2>
+  <p class="desc" style="margin:-6px 0 12px">Fotos reales: bandejas selladas con nuestra etiqueta, listas para servir.</p>
+  <div class="strip"><img src="r0015.jpg" alt="Bandeja de pavo con etiqueta M&S" loading="lazy"><img src="r0022.jpg" alt="Bandeja lista para entregar" loading="lazy"><img src="r0040.jpg" alt="Bandeja de pavo sellada" loading="lazy"><img src="r0012.jpg" alt="Bandeja de cena navideña" loading="lazy"><img src="r0020.jpg" alt="Keke navideño en caja" loading="lazy"><img src="r0046.jpg" alt="Keke navideño de regalo" loading="lazy"></div>
+  <div class="chef">
+   <img src="maribel-retrato.jpg" alt="Maribel, chef y fundadora de M&amp;S Catering">
+   <div>
+    <div class="kick">Conoce a nuestra chef</div>
+    <h2 style="font-size:clamp(30px,5vw,42px);margin:4px 0 2px">Maribel</h2>
+    <div class="sub" style="color:var(--green);font-weight:700;margin-bottom:10px">Chef y fundadora de M&amp;S Catering</div>
+    <p>Detrás de cada plato está Maribel. Con sazón casera y mucho cariño prepara la panceta a la caja china, la comida criolla y arequipeña, las pastas y los postres que llegan a tu mesa.</p>
+    <p style="margin-top:8px">Para ella, cocinar es compartir: por eso cuida cada detalle de tu pedido, desde una porción individual hasta el buffet de tu evento.</p>
+    <p class="script" style="font-size:34px;margin-top:6px">¡Buen provecho!</p>
+   </div>
+  </div>
 
   <h2 class="h2">¿Cómo pedir?</h2>
   <div class="steps">
@@ -271,7 +303,7 @@ html{scroll-padding-top:110px}
 <section class="page-s" id="p-carta">
  <div class="wrap">
   <div class="kick" style="margin-top:28px">Todo el año</div><h1 style="font-size:clamp(40px,7vw,60px)">Nuestra carta</h1>
-  <p class="desc" style="margin-top:6px">Precios según cantidad y fecha. Agrega lo que te interesa y te enviamos la cotización por WhatsApp.</p>
+  <p class="desc" style="margin-top:6px">Porciones individuales con precio fijo; para bandejas, eventos y productos "a consultar" te enviamos la cotización por WhatsApp. <b>Pedidos con 3 días de anticipación.</b></p>
   <div class="catnav" id="catnav"></div>
   <div id="carta"></div>
   <section class="cat" id="carta-bocaditos"><div class="cat-head"><img src="bites.jpg" alt=""><div><h2>Bocaditos para eventos</h2><p>Salados y dulces · pedido mínimo 10 unidades por bocadito.</p></div></div>
@@ -307,13 +339,19 @@ html{scroll-padding-top:110px}
   <div class="kick" style="margin-top:28px">Hecho por nosotros</div><h1 style="font-size:clamp(40px,7vw,60px)">Eventos y regalos</h1>
   <p style="margin:8px 0 18px">Buffets criollos, mesas de piqueos, panceta a la caja china, lasagnas y cajas de regalo para tu familia, tu equipo o tus clientes. Cuéntanos tu evento y te armamos una propuesta.</p>
   <div class="grid" id="g-eventos"></div>
-  <h2 class="h2">Galería</h2>
-  <div class="gal">
-   <img src="g0009.jpg" alt="Buffet navideño corporativo" loading="lazy"><img src="g0028.jpg" alt="Mesa de piqueos" loading="lazy">
-   <img src="criollo.jpg" alt="Buffet criollo" loading="lazy"><img src="g0017.jpg" alt="Árbol de bocaditos" loading="lazy">
-   <img src="g0047.jpg" alt="Tabla de charcutería" loading="lazy"><img src="g0052.jpg" alt="Caja china" loading="lazy">
-   <img src="g0020.jpg" alt="Keke en caja de regalo" loading="lazy"><img src="g0012.jpg" alt="Bandeja de cena" loading="lazy">
+  <div class="chef">
+   <img src="maribel-retrato.jpg" alt="Maribel, chef y fundadora de M&amp;S Catering">
+   <div>
+    <div class="kick">Conoce a nuestra chef</div>
+    <h3 style="font-size:clamp(30px,5vw,42px);margin:4px 0 2px">Maribel</h3>
+    <div class="sub" style="color:var(--green);font-weight:700;margin-bottom:10px">Chef y fundadora de M&amp;S Catering</div>
+    <p>Detrás de cada plato está Maribel. Con sazón casera y mucho cariño prepara la panceta a la caja china, la comida criolla y arequipeña, las pastas y los postres que llegan a tu mesa.</p>
+    <p style="margin-top:8px">Para ella, cocinar es compartir: por eso cuida cada detalle de tu pedido, desde una porción individual hasta el buffet de tu evento.</p>
+    <p class="script" style="font-size:34px;margin-top:6px">¡Buen provecho!</p>
+   </div>
   </div>
+  <h2 class="h2">Nuestros trabajos</h2><p class="desc" style="margin:-6px 0 14px">Fotos reales de eventos y pedidos preparados por Maribel.</p>
+  <div class="gal"><img src="maribel-buffet.jpg" alt="Maribel con su buffet criollo en ollas de barro" loading="lazy"><img src="ollas-menu.jpg" alt="Menú criollo en ollas de barro" loading="lazy"><img src="cajachina-pro.jpg" alt="Las cajas chinas de M&amp;S Catering" loading="lazy"><img src="panceta-en-caja.jpg" alt="Panceta dorándose en la caja china" loading="lazy"><img src="r0007.jpg" alt="Buffet navideño en oficina" loading="lazy"><img src="crema.jpg" alt="Crema volteada" loading="lazy"><img src="g0028.jpg" alt="Mesa de piqueos" loading="lazy"><img src="criollo.jpg" alt="Buffet criollo en ollas de barro" loading="lazy"><img src="asado-rodajas.jpg" alt="Asado en rodajas" loading="lazy"><img src="r0014.jpg" alt="Pavo en rodajas decorado" loading="lazy"><img src="g0017.jpg" alt="Árbol de bocaditos" loading="lazy"><img src="g0047.jpg" alt="Tabla de quesos y jamones" loading="lazy"></div>
   <div style="margin-top:16px"><a class="btn red" id="waCorp" href="#">Pedir cotización para mi evento</a></div>
  </div>
 </section>
@@ -324,7 +362,7 @@ html{scroll-padding-top:110px}
   <h1 style="font-size:clamp(40px,7vw,60px);margin:28px 0 14px">Pagos y contacto</h1>
   <div class="pay">
    <div class="item"><b style="color:var(--red)">Medios de pago</b><div id="accs"></div>
-    <div class="desc">Pagos solo por transferencia bancaria, Yape o Plin. Precios no incluyen delivery.</div></div>
+    <div class="desc">Pagos por transferencia Interbank, Yape o Plin. Precios no incluyen delivery.</div></div>
    <div class="item"><b style="color:var(--red)">Contacto</b>
     <div class="acc"><b>WhatsApp</b><a id="waNum" href="#" style="color:var(--green);font-weight:700">+51 997 840 228</a></div>
     <div class="acc"><b>Correo</b><a href="mailto:myscatering@gmail.com" style="color:var(--ink)">myscatering@gmail.com</a></div>
@@ -383,26 +421,29 @@ const WA = "51997840228";
 const SEASON = { id:"navidad", start:"2026-11-01", end:"2026-12-31" };
 
 // Medios de pago
-const ACC=[["BCP Soles","194-96613884-079"],["BBVA Soles","0011-0814-0205324173"],["Interbank","8213476366770"],["Yape / Plin","997 840 228"]];
+const ACC=[["Interbank","8213476366770"],["Yape / Plin","997 840 228"]];
 
 // Carta de todo el año. p:null = "Precio a consultar". Para poner precio: p:45
 const CARTA = [
  {cat:"Platos al carbón y caja china", icon:"🔥", items:[
-  {id:"panceta", t:"Panceta a la caja china", sub:"Crocante por fuera, jugosa por dentro", desc:"Nuestra especialidad. Ideal para reuniones y eventos: pídela por kilo o para tu número de invitados.", p:null, img:"panceta"},
-  {id:"asado", t:"Asado al horno", sub:"Cerdo o res, para compartir", desc:"Pieza entera horneada con especias, lista para servir.", p:null, img:"asado"},
-  {id:"pollo", t:"Pollo o pavo al horno", sub:"Entero, dorado y jugoso", desc:"Perfecto para almuerzos familiares y celebraciones.", p:null, img:"pollo"},
+  {id:"cajaporcion", t:"Caja china · porción individual", sub:"250 g de panceta", desc:"250 g de crocante panceta de cerdo a la caja china, acompañada de camote, papa y ají.", p:35, img:"panceta-tabla"},
+  {id:"panceta", t:"Panceta entera a la caja china", sub:"Pieza entera · por kilo · para eventos", desc:"Nuestra especialidad: crocante por fuera y jugosa por dentro. Para reuniones y eventos, cotiza por kilo o por número de invitados.", p:null, img:"panceta-en-caja"},
+  {id:"asado", t:"Asado al horno", sub:"Cerdo o res, para compartir", desc:"Asado horneado con especias, jugoso por dentro y dorado por fuera. Pídelo entero o en rodajas.", p:null, img:"asado-horno"},
+  {id:"pollo", t:"Pollo o pavo al horno", sub:"Entero, dorado y jugoso", desc:"Perfecto para almuerzos familiares y celebraciones.", p:null, img:"pollo-dorado"},
  ]},
  {cat:"Chicharrones", icon:"🥓", items:[
-  {id:"chicharron", t:"Chicharrón", sub:"Por kilo o en bandeja", desc:"Chicharrón crocante para tu desayuno, reunión o evento.", p:null, img:"chicharron"},
+  {id:"chicharron", t:"Chicharrón", sub:"Por kilo o en bandeja", desc:"Chicharrón crocante para tu desayuno, reunión o evento.", p:null, img:"chicharron-limon"},
  ]},
  {cat:"Pastas", icon:"🍝", items:[
   {id:"lasagna", t:"Lasagna", sub:"En bandeja para compartir", desc:"Lasagna casera gratinada. Consulta tamaños y sabores.", p:null, img:"lasagna"},
  ]},
- {cat:"Buffet criollo y comida arequipeña", icon:"🍲", items:[
-  {id:"criollo", t:"Buffet criollo", sub:"Varios platos en ollas de barro", desc:"Lo mejor de nuestra gastronomía para tu evento. Tú eliges los platos.", p:null, img:"criollo"},
-  {id:"aji", t:"Ají de gallina", sub:"En olla de barro o bandeja", desc:"El clásico criollo, con huevo, aceituna y pecanas.", p:null, img:"aji"},
+ {cat:"Comida criolla y arequipeña", icon:"🍲", items:[
+  {id:"seco", t:"Frejoles con seco", sub:"Porción individual", desc:"Porción de seco de res acompañado de frejol y arroz.", p:25, img:"seco"},
+  {id:"rocoto", t:"Rocoto relleno", sub:"Porción individual", desc:"Rocoto relleno con carne de res, acompañado de papas y queso al estilo arequipeño.", p:25, img:"rocoto"},
+  {id:"aji", t:"Ají de gallina", sub:"Porción individual", desc:"Porción de ají de gallina acompañada de papas, arroz y huevo.", p:25, img:"ajiporcion"},
+  {id:"carapulcra", t:"Carapulcra con panceta", sub:"Porción individual", desc:"Carapulcra con porción de panceta a la caja china, acompañada de porción de yuca.", p:30, img:"carapulcra"},
   {id:"causa", t:"Causa rellena", sub:"Fuente para compartir", desc:"Causa limeña rellena y decorada, ideal para buffets.", p:null, img:"causa"},
-  {id:"arequipena", t:"Comida arequipeña", sub:"Platos típicos para compartir", desc:"Pregúntanos por los platos arequipeños disponibles.", p:null, img:"ollas"},
+  {id:"criollo", t:"Buffet criollo", sub:"En ollas tradicionales de barro", desc:"Ají de gallina, seco, cau cau, arroz, frejoles y más: lo mejor de nuestra gastronomía para tu evento. Tú eliges los platos.", p:null, img:"ollas-menu"},
  ]},
  {cat:"Tablas de queso y jamones", icon:"🧀", items:[
   {id:"tabla", t:"Tabla de quesos y jamones", sub:"Para 6, 10 o más personas", desc:"Selección de quesos, jamones, frutas y frutos secos.", p:null, img:"tabla"},
@@ -416,7 +457,7 @@ const CARTA = [
 ];
 const BOCADITOS=[{id:"bocaditos", t:"Bocaditos para eventos", sub:"Salados y dulces, por ciento", desc:"Elige tus bocaditos de la lista y dinos cuántos necesitas.", p:null, img:"bites"}];
 const EVENTOS=[
- {id:"buffet", t:"Buffet para eventos", sub:"Sociales y corporativos", desc:"Buffets criollos, de carnes o navideños, con montaje.", p:null, img:"buffet"},
+ {id:"buffet", t:"Buffet para eventos", sub:"Sociales y corporativos", desc:"Buffets criollos en ollas de barro, de carnes o navideños, con montaje y decoración.", p:null, img:"maribel-buffet"},
  {id:"boxcorp", t:"Cajas de regalo corporativas", sub:"Para colaboradores y clientes", desc:"Cajas personalizadas con productos gourmet y tu tarjeta.", p:null, img:"boxcorp"},
  {id:"box", t:"Cajas de regalo y desayunos", sub:"Cumpleaños y fechas especiales", desc:"Sorprende a alguien especial con una caja de regalo.", p:null, img:"box"},
 ];
@@ -444,7 +485,7 @@ const ESP=["Alitas","Mini brocheta de pollo","Langostinos al panko","Tequeños d
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const SITE="https://husuva-spec.github.io/myscatering/";
-const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t.trimEnd()+"\n\n🛒 Catálogo y pedidos: "+SITE);
+const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t.trimEnd()+"\n\nCatálogo y pedidos: "+SITE);
 function money(n){return "S/ "+n.toLocaleString("es-PE")}
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1800)}
 
@@ -464,13 +505,18 @@ function card(p){
   const price=p.p==null?`<span class="ask">Precio a consultar</span>`:`<span class="price"><small>S/</small>${p.p}</span>`;
   const hint=p.cena?`<div class="hint">Tú eliges: 2 carnes · 1 arroz · 2 purés · 1 ensalada</div>`:"";
   return `<article class="item ${img?"has-img":""}">${img}<div class="${img?"body":""}" style="${img?"":"display:flex;flex-direction:column;gap:8px;flex:1"}">
-   ${tag(p)}<h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div>${p.desc?`<div class="desc">${esc(p.desc)}</div>`:""}${hint}
+   ${tag(p)}${p.catLabel?`<span class="tag ctag">${esc(p.catLabel)}</span>`:""}<h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div>${p.desc?`<div class="desc">${esc(p.desc)}</div>`:""}${hint}
    <div class="row">${price}${btn}</div></div></article>`;
 }
 function slug(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-")}
 if(seasonOn){ for(const g of ["cenas","bites","tablas","dulces"]) $("#g-"+g).innerHTML=XMAS.filter(p=>p.grp===g).map(card).join(""); }
-$("#carta").innerHTML=CARTA.map(c=>`<section class="cat" id="carta-${slug(c.cat)}"><div class="cat-head"><img src="${c.items[0].img}.jpg" alt=""><div><h2>${c.icon} ${esc(c.cat)}</h2></div></div><div class="grid">${c.items.map(card).join("")}</div></section>`).join("");
-$("#catnav").innerHTML=[...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}">${c.icon} ${esc(c.cat)}</a>`),`<a href="#carta-bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
+CARTA.forEach(c=>c.items.forEach(i=>{i.catLabel=c.icon+" "+c.cat;i.catSlug=slug(c.cat);}));
+$("#carta").innerHTML=`<div class="grid" id="cartaGrid">${CARTA.flatMap(c=>c.items).map(p=>card(p).replace('<article class="item','<article data-c="'+p.catSlug+'" class="item')).join("")}</div>`;
+$("#catnav").innerHTML=[`<a href="#carta" data-f="" class="on">Todo</a>`,...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}" data-f="${slug(c.cat)}">${c.icon} ${esc(c.cat)}</a>`),`<a href="#carta-bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
+function filterCarta(f){
+  document.querySelectorAll("#cartaGrid > article").forEach(a=>a.style.display=(!f||a.dataset.c===f)?"":"none");
+  document.querySelectorAll("#catnav a[data-f]").forEach(a=>a.classList.toggle("on",a.dataset.f===(f||"")));
+}
 $("#g-bocaditos").innerHTML=BOCADITOS.map(card).join("");
 $("#g-eventos").innerHTML=EVENTOS.map(card).join("");
 $("#tiles").innerHTML=[...(seasonOn?[["#navidad","cena4","🎄 Especial Navidad","Cenas, bites, tablas y dulces"]]:[]),
@@ -486,7 +532,9 @@ $("#yr").textContent=new Date().getFullYear();
 function route(){
   let h=location.hash.slice(1)||"inicio";
   let page=h, anchor=null;
-  if(h.startsWith("carta-")||h==="especial"){page="carta";anchor=h;}
+  if(page==="carta") filterCarta("");
+  if(h.startsWith("carta-")||h==="especial"){page="carta";anchor=h;
+    const f=h.slice(6); if(h.startsWith("carta-")&&CARTA.some(c=>slug(c.cat)===f)){filterCarta(f);anchor="catnav";} else filterCarta("");}
   if(["cenas","bites"].includes(h)){page="navidad";anchor=h;}
   if(!document.getElementById("p-"+page)) page="inicio";
   document.querySelectorAll(".page-s").forEach(s=>s.classList.toggle("on",s.id==="p-"+page));
