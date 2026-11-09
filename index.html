@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M&amp;S Catering · Navidad 2026</title>
+<meta name="description" content="Cenas navideñas, Christmas Bites, tablas gourmet y dulces. Pedidos por WhatsApp. Santiago de Surco, Lima.">
+<meta property="og:title" content="M&amp;S Catering · Catálogo Navideño 2026">
+<meta property="og:description" content="Cenas navideñas desde S/ 220, bocaditos desde S/ 75, tablas y dulces. ¡Haz tu pedido por WhatsApp!">
+<meta property="og:image" content="cena4.jpg">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Great+Vibes&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EC;--cream2:#F3EADB;--red:#A8321E;--green:#4E6B4B;--sage:#7C9677;--ink:#3B2A24;--muted:#7a6a62;--line:#e8dccb}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--cream);color:var(--ink);font-family:'Alegreya Sans',system-ui,sans-serif;font-size:17px;line-height:1.45;padding-bottom:90px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:var(--red);font-weight:600;line-height:1.08}
+img{max-width:100%;display:block}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+.kick{letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--green);font-size:13px}
+.script{font-family:'Great Vibes',cursive;color:var(--green);font-weight:400}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(251,246,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:10px;height:56px}
+.nav img{width:38px;height:38px;border-radius:50%}
+.nav b{font-family:'Playfair Display';color:var(--red);font-size:19px;flex:1}
+.nav nav{display:flex;gap:4px;overflow-x:auto}
+.nav nav a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 10px;border-radius:99px;white-space:nowrap}
+.nav nav a:hover{background:var(--cream2)}
+@media(max-width:640px){.nav nav{display:none}}
+/* hero */
+.hero{padding:34px 0 20px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(46px,8vw,78px);letter-spacing:-.01em}
+.hero h1 .script{display:block;font-size:.9em;margin-top:-4px}
+.hero p{font-size:19px;margin:14px 0 22px;max-width:460px}
+.hero .pic{position:relative}
+.hero .pic img.big{border-radius:50%;aspect-ratio:1;object-fit:cover;box-shadow:0 18px 40px rgba(59,42,36,.22)}
+.hero .pic img.sm{position:absolute;border-radius:50%;border:7px solid var(--cream);box-shadow:0 10px 24px rgba(59,42,36,.2);width:34%;aspect-ratio:1;object-fit:cover}
+@media(max-width:720px){.hero .wrap{grid-template-columns:1fr}.hero .pic{order:-1;max-width:420px;margin:0 auto;width:86%}}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;text-decoration:none;border:0;font:700 17px 'Alegreya Sans';padding:13px 22px;border-radius:99px;cursor:pointer}
+.btn.red{background:var(--red)}
+.btn.ghost{background:transparent;color:var(--green);border:2px solid var(--green)}
+.btn svg{width:22px;height:22px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+/* sections */
+section.cat{padding:38px 0 8px}
+.cat-head{display:flex;gap:18px;align-items:center;margin-bottom:18px}
+.cat-head img{width:92px;height:92px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 6px 16px rgba(59,42,36,.15)}
+.cat-head h2{font-size:clamp(32px,5vw,44px)}
+.cat-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.item{background:#fff;border-radius:22px;padding:18px;box-shadow:0 4px 18px rgba(59,42,36,.07);display:flex;flex-direction:column;gap:8px}
+.item.has-img{padding:0;overflow:hidden}
+.item.has-img .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.item.has-img > img{aspect-ratio:16/10;object-fit:cover;width:100%}
+.tag{display:inline-block;align-self:flex-start;background:var(--cream2);color:var(--red);border-radius:99px;padding:3px 12px;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.item h3{font-size:24px}
+.item .sub{color:var(--green);font-weight:700}
+.item .desc{color:var(--muted);font-size:16px}
+.row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px}
+.price{font-family:'Playfair Display';font-weight:700;color:var(--red);font-size:30px}
+.price small{font-size:.55em;margin-right:3px}
+.qty{display:flex;align-items:center;background:var(--cream2);border-radius:99px}
+.qty button{width:42px;height:42px;border:0;background:none;font-size:24px;color:var(--green);cursor:pointer;border-radius:50%}
+.qty button:hover{background:#e9dcc6}
+.qty span{min-width:26px;text-align:center;font-weight:700;font-size:18px}
+.add{background:var(--green);color:#fff;border:0;border-radius:99px;padding:10px 20px;font:700 16px 'Alegreya Sans';cursor:pointer}
+/* cena options */
+.opts{display:none;border-top:1px dashed var(--line);margin-top:8px;padding-top:10px}
+.opts.on{display:block}
+.opts fieldset{border:0;margin:8px 0}
+.opts legend{font-weight:700;color:var(--red);font-size:15px}
+.opts legend small{color:var(--muted);font-weight:500}
+.opts label{display:flex;gap:8px;align-items:flex-start;font-size:15px;padding:3px 0;cursor:pointer}
+.opts input{accent-color:var(--green);margin-top:3px;width:17px;height:17px;flex:none}
+.warn{color:var(--red);font-size:14px;font-weight:700;min-height:1em}
+/* bites menu */
+.menu{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:16px}
+.menu div{border-radius:20px;padding:18px 20px;color:#fff}
+.menu b{letter-spacing:.2em;font-size:14px}
+.menu ul{list-style:none;margin-top:8px}
+.menu li{padding:2px 0}
+.menu li:before{content:'✦ ';opacity:.8}
+@media(max-width:720px){.menu{grid-template-columns:1fr}}
+.note{background:var(--cream2);border-radius:16px;padding:12px 16px;margin-top:14px;font-size:16px}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gal img{aspect-ratio:1;object-fit:cover;border-radius:16px;width:100%}
+@media(max-width:640px){.gal{grid-template-columns:repeat(2,1fr)}}
+/* pay */
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.pay{grid-template-columns:1fr}}
+.acc{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.acc span{font-variant-numeric:tabular-nums}
+.copy{background:none;border:1px solid var(--line);border-radius:8px;font-size:12px;padding:2px 8px;cursor:pointer;color:var(--green);margin-left:6px}
+footer{text-align:center;color:var(--muted);padding:40px 16px 20px;font-size:15px}
+/* cart bar + drawer */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--green);color:#fff;transform:translateY(110%);transition:transform .25s}
+.bar.on{transform:none}
+.bar .wrap{display:flex;align-items:center;gap:12px;height:72px}
+.bar .t{flex:1;line-height:1.2}
+.bar .t b{font-size:22px;font-family:'Playfair Display'}
+.bar .btn{background:#fff;color:var(--green)}
+.drawer{position:fixed;inset:0;z-index:40;background:rgba(40,28,24,.5);display:none}
+.drawer.on{display:block}
+.panel{position:absolute;right:0;top:0;bottom:0;width:min(480px,100%);background:var(--cream);overflow-y:auto;padding:22px 20px 30px}
+.panel h2{font-size:32px;margin-bottom:10px}
+.line{display:flex;gap:10px;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
+.line .x{font-size:14px;color:var(--muted)}
+.line button{border:0;background:none;color:var(--red);cursor:pointer;font-size:14px}
+.f{display:flex;flex-direction:column;gap:4px;margin-top:12px}
+.f label{font-weight:700;font-size:15px}
+.f input,.f textarea,.f select{font:16px 'Alegreya Sans';padding:11px 12px;border:1px solid #d8c9b4;border-radius:12px;background:#fff;color:var(--ink)}
+.seg{display:flex;gap:8px}
+.seg label{flex:1;display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #d8c9b4;border-radius:12px;padding:10px;font-weight:500;cursor:pointer}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 4px}
+.close{position:absolute;right:14px;top:12px;border:0;background:none;font-size:30px;cursor:pointer;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-size:15px;opacity:0;transition:opacity .2s;z-index:50;pointer-events:none}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+ <img src="logo.png" alt="M&amp;S Catering"><b>M&amp;S Catering</b>
+ <nav><a href="#cenas">Cenas</a><a href="#bites">Bocaditos</a><a href="#tablas">Tablas</a><a href="#dulces">Dulces</a><a href="#eventos">Eventos</a><a href="#pagos">Pagos</a></nav>
+</div></header>
+
+<div class="hero"><div class="wrap">
+ <div>
+  <div class="kick">Catálogo navideño 2026 · Lima</div>
+  <h1>Esta Navidad,<span class="script">nosotros cocinamos</span></h1>
+  <p>Cenas navideñas, bocaditos, tablas gourmet y dulces hechos con cariño. Elige tus packs aquí y envíanos tu pedido por WhatsApp en un toque.</p>
+  <div class="chips">
+   <a class="btn" href="#cenas">Ver el menú</a>
+   <a class="btn ghost" id="waTop" href="#">Escríbenos</a>
+  </div>
+ </div>
+ <div class="pic">
+  <img class="big" src="cena4.jpg" alt="Cena navideña con pavo">
+  <img class="sm" src="corona.jpg" alt="Corona de delicias" style="left:-6%;bottom:-2%">
+  <img class="sm" src="keke.jpg" alt="Keke navideño" style="right:-4%;bottom:6%;width:26%">
+ </div>
+</div></div>
+
+<main class="wrap">
+
+<section class="cat" id="cenas">
+ <div class="cat-head"><img src="cena4.jpg" alt=""><div><div class="kick">Packs 09 · 10 · 11</div><h2>Cena Navideña</h2>
+ <p>2 carnes, 1 arroz, 2 purés y 1 ensalada a tu elección.</p></div></div>
+ <div class="grid" id="g-cenas"></div>
+</section>
+
+<section class="cat" id="bites">
+ <div class="cat-head"><img src="bites.jpg" alt=""><div><div class="kick">Packs 05 al 08</div><h2>Christmas Bites</h2>
+ <p>Arma tu pack de bocaditos y comparte esta Navidad.</p></div></div>
+ <div class="grid" id="g-bites"></div>
+ <div class="menu">
+  <div style="background:var(--green)"><b>SALADOS</b><ul id="m-sal"></ul></div>
+  <div style="background:var(--red)"><b>DULCES</b><ul id="m-dul"></ul></div>
+  <div style="background:#8A6A4F"><b>ESPECIALES</b><div style="font-size:14px;opacity:.9">Solicita tu cotización</div><ul id="m-esp"></ul></div>
+ </div>
+ <div class="note">Pedido mínimo por bocadito: <b>10 unidades</b>. Escribe en tu pedido qué bocaditos prefieres.</div>
+</section>
+
+<section class="cat" id="tablas">
+ <div class="cat-head"><img src="corona.jpg" alt=""><div><div class="kick">Packs 03 · 04</div><h2>Tablas gourmet</h2>
+ <p>El centro perfecto para tus reuniones navideñas.</p></div></div>
+ <div class="grid" id="g-tablas"></div>
+</section>
+
+<section class="cat" id="dulces">
+ <div class="cat-head"><img src="keke.jpg" alt=""><div><div class="kick">Packs 01 · 02</div><h2>Dulces navideños</h2>
+ <p>Para tu mesa o para regalar.</p></div></div>
+ <div class="grid" id="g-dulces"></div>
+</section>
+
+<section class="cat" id="eventos">
+ <div class="kick">Hecho por nosotros</div><h2 style="font-size:clamp(32px,5vw,44px);margin:4px 0 8px">Eventos y regalos corporativos</h2>
+ <p style="margin-bottom:16px">Buffets para empresas, panceta a la caja china, lasagnas, cajas de regalo para tu equipo y más.</p>
+ <div class="gal">
+  <img src="g0009.jpg" alt="Buffet navideño corporativo" loading="lazy"><img src="g0020.jpg" alt="Keke navideño en caja" loading="lazy">
+  <img src="g0012.jpg" alt="Bandeja de cena" loading="lazy"><img src="g0017.jpg" alt="Árbol de bocaditos" loading="lazy">
+  <img src="g0047.jpg" alt="Tabla de charcutería" loading="lazy"><img src="g0052.jpg" alt="Caja china" loading="lazy">
+  <img src="g0025.jpg" alt="Mesa de evento" loading="lazy"><img src="g0041.jpg" alt="Caja de regalo" loading="lazy">
+ </div>
+ <div style="margin-top:16px"><a class="btn red" id="waCorp" href="#">Pedir cotización para mi empresa</a></div>
+</section>
+
+<section class="cat" id="pagos">
+ <h2 style="font-size:clamp(32px,5vw,44px);margin-bottom:14px">Pagos y contacto</h2>
+ <div class="pay">
+  <div class="item"><b style="color:var(--red)">Medios de pago</b>
+   <div id="accs"></div>
+   <div class="desc">Pagos solo por transferencia bancaria, Yape o Plin. Precios no incluyen delivery.</div></div>
+  <div class="item"><b style="color:var(--red)">Contacto</b>
+   <div class="acc"><b>WhatsApp</b><a id="waNum" href="#" style="color:var(--green);font-weight:700">+51 997 840 228</a></div>
+   <div class="acc"><b>Correo</b><a href="mailto:myscatering@gmail.com" style="color:var(--ink)">myscatering@gmail.com</a></div>
+   <div class="acc"><b>Facebook</b><a href="https://www.facebook.com/profile.php?id=100044279238014" target="_blank" rel="noopener" style="color:var(--ink)">M&amp;S Catering.</a></div>
+   <div class="acc"><b>Zona</b><span>Santiago de Surco, Lima</span></div></div>
+ </div>
+</section>
+</main>
+
+<footer>© 2026 M&amp;S Catering · Pastas · Grill · Pastelería</footer>
+
+<div class="bar" id="bar"><div class="wrap">
+ <div class="t"><span id="barN">0 productos</span><br><b id="barT">S/ 0</b></div>
+ <button class="btn" id="openCart">Ver pedido</button>
+</div></div>
+
+<div class="drawer" id="drawer"><div class="panel">
+ <button class="close" id="closeCart" aria-label="Cerrar">×</button>
+ <h2>Tu pedido</h2>
+ <div id="lines"></div>
+ <div class="total"><b>Total (sin delivery)</b><span class="price" id="tot">S/ 0</span></div>
+ <div class="f"><label for="fn">Nombre</label><input id="fn" autocomplete="name" placeholder="Tu nombre"></div>
+ <div class="f"><label for="fd">¿Para qué fecha?</label><input id="fd" type="date"></div>
+ <div class="f"><label>Entrega</label><div class="seg">
+  <label><input type="radio" name="ent" value="Delivery" checked> Delivery</label>
+  <label><input type="radio" name="ent" value="Recojo"> Recojo</label></div></div>
+ <div class="f" id="fdist"><label for="fa">Distrito / dirección</label><input id="fa" placeholder="Ej. Surco, Av. ..."></div>
+ <div class="f"><label for="fm">Comentarios (bocaditos, horario, etc.)</label><textarea id="fm" rows="3" placeholder="Ej. bocaditos: empanaditas, triples y trufas"></textarea></div>
+ <p class="warn" id="cartWarn"></p>
+ <button class="btn" id="send" style="width:100%;justify-content:center;margin-top:8px;background:#25A244">
+  <svg viewBox="0 0 32 32"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.4 3.4 14.6 14.6 0 0 0 5.6 4.9c2.1.9 2.9 1 4 .8a3.4 3.4 0 0 0 2.2-1.6 2.8 2.8 0 0 0 .2-1.6c-.1-.1-.3-.2-.6-.4z"/></svg>
+  Enviar pedido por WhatsApp</button>
+ <p class="desc" style="margin-top:10px;font-size:14px;color:var(--muted)">Se abrirá WhatsApp con tu pedido listo. Te confirmaremos disponibilidad, delivery y pago.</p>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const WA = "51997840228";
+const waLink = t => "https://wa.me/" + WA + "?text=" + encodeURIComponent(t);
+const CARNES = ["Pechuga de pavo horneada","Enrollado de pollo (guindones c/ tocino o jamón y queso)","Panceta a la caja china"];
+const P = [
+ {id:"09",cat:"cenas",t:"Cena Navideña · 4 personas",sub:"Carnes 500 g c/u · guarniciones 500 g · ensalada 500 g",p:220,img:"cena4",cena:{
+   carnes:CARNES, arroz:["Arroz árabe","Arroz con aceitunas","Arroz pilaf"], pure:["Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada alemana","Ensalada rusa"]}},
+ {id:"10",cat:"cenas",t:"Cena Navideña · 6 personas",sub:"Pavo o enrollado 800 g · panceta 1 kg · puré de papa 750 g · ensalada 500 g",p:360,img:"cena",cena:{
+   carnes:["Pavo","Enrollado de pollo (guindones c/ tocino o jamón y queso)","Panceta a la caja china"], arroz:["Arroz árabe","Arroz con aceitunas"], pure:["Puré de papa","Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada de papas"]}},
+ {id:"11",cat:"cenas",t:"Cena Navideña · 8 personas",sub:"Pavo 1 kg · enrollado 1 kg · panceta 1.5 kg · arroz 1 kg · puré 500 g",p:420,img:"cena4",cena:{
+   carnes:CARNES, arroz:["Arroz árabe","Arroz con aceitunas","Arroz pilaf"], pure:["Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada alemana","Ensalada rusa"]}},
+ {id:"05",cat:"bites",t:"Christmas Bites · 50 unidades",sub:"50 bocaditos salados",p:75},
+ {id:"06",cat:"bites",t:"Christmas Bites · 75 unidades",sub:"50 salados + 25 dulces",p:100},
+ {id:"07",cat:"bites",t:"Christmas Bites · 100 unidades",sub:"50 salados + 50 dulces",p:150},
+ {id:"08",cat:"bites",t:"Christmas Bites · 250 unidades",sub:"150 salados + 100 dulces",p:280},
+ {id:"03",cat:"tablas",t:"Corona de Delicias",sub:"Tabla de charcutería en forma de corona",desc:"Selección de quesos, embutidos y frutos secos. ¡Perfecta para compartir!",p:120,img:"corona"},
+ {id:"04",cat:"tablas",t:"Árbol Gourmet",sub:"Tabla de charcutería en forma de árbol",desc:"Selección de quesos, embutidos y frutos secos. ¡Ideal para tus reuniones!",p:120,img:"arbol"},
+ {id:"01",cat:"dulces",t:"Keke Navideño",sub:"8 porciones · molde 25 cm",desc:"Suave cobertura blanca con frutos rojos, cítricos confitados, frutos secos y especias.",p:50,img:"keke"},
+ {id:"02",cat:"dulces",t:"Alfajorcitos Navideños",sub:"18 unidades",desc:"Galletitas de maicena rellenas de manjar blanco. ¡El detalle perfecto para regalar!",p:20,img:"alfajor"},
+];
+const SAL=["Mini empanaditas de carne/pollo","Petipán de pollo con apio/durazno","Sanguchito de huevo con tocino","Triple de pollo, durazno, jamón y queso","Triple de pollo con pecanas, jamón y queso","Triple de huevo, tocino, jamón y queso","Minicroissant de jamón y queso","Mini hamburguesitas","Enrollado de hotdog"];
+const DUL=["Mini piononitos","Mini alfajorcitos","Trufas navideñas","Mini brownies","Mini pie de limón"];
+const ESP=["Alitas","Mini brocheta de pollo","Langostinos al panko","Tequeños de lomo"];
+const ACC=[["BCP Soles","194-96613884-079"],["BBVA Soles","0011-0814-0205324173"],["Interbank","8213476366770"],["Yape / Plin","997 840 228"]];
+
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let cart=[]; // {pid, qty, opts}
+
+function money(n){return "S/ "+n.toLocaleString("es-PE")}
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1800)}
+
+function optGroup(p,key,label,need,list){
+  const type=need===1?"radio":"checkbox";
+  return `<fieldset data-k="${key}" data-need="${need}"><legend>${label} <small>(elige ${need})</small></legend>`+
+   list.map(o=>`<label><input type="${type}" name="${p.id}-${key}" value="${esc(o)}"> ${esc(o)}</label>`).join("")+`</fieldset>`;
+}
+function card(p){
+  const img=p.img?`<img src="${p.img}.jpg" alt="${esc(p.t)}" loading="lazy">`:"";
+  let extra="";
+  if(p.cena){extra=`<button class="btn ghost" style="padding:8px 16px;font-size:15px;align-self:flex-start" data-toggle="${p.id}">Elegir opciones ▾</button>
+   <div class="opts" id="o-${p.id}">${optGroup(p,"carnes","Carnes",2,p.cena.carnes)}${optGroup(p,"arroz","Arroz",1,p.cena.arroz)}${optGroup(p,"pure","Purés",2,p.cena.pure)}${optGroup(p,"ens","Ensalada",1,p.cena.ens)}<div class="warn" id="w-${p.id}"></div></div>`;}
+  return `<article class="item ${img?"has-img":""}">${img}<div class="${img?"body":""}" style="${img?"":"display:flex;flex-direction:column;gap:8px;flex:1"}">
+   <span class="tag">Pack ${p.id}</span><h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div>${p.desc?`<div class="desc">${esc(p.desc)}</div>`:""}
+   ${extra}
+   <div class="row"><span class="price"><small>S/</small>${p.p}</span><button class="add" data-add="${p.id}">Agregar</button></div></div></article>`;
+}
+for(const c of ["cenas","bites","tablas","dulces"]) $("#g-"+c).innerHTML=P.filter(p=>p.cat===c).map(card).join("");
+$("#m-sal").innerHTML=SAL.map(x=>`<li>${x}</li>`).join("");$("#m-dul").innerHTML=DUL.map(x=>`<li>${x}</li>`).join("");$("#m-esp").innerHTML=ESP.map(x=>`<li>${x}</li>`).join("");
+$("#accs").innerHTML=ACC.map(([a,b])=>`<div class="acc"><b>${a}</b><span>${b}<button class="copy" data-copy="${b.replace(/\s/g,"")}">copiar</button></span></div>`).join("");
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-toggle],[data-add],[data-copy],[data-rm],[data-inc],[data-dec]"); if(!t) return;
+  if(t.dataset.toggle){const o=$("#o-"+t.dataset.toggle);o.classList.toggle("on");t.textContent=o.classList.contains("on")?"Ocultar opciones ▴":"Elegir opciones ▾";}
+  if(t.dataset.add) add(t.dataset.add);
+  if(t.dataset.copy){navigator.clipboard&&navigator.clipboard.writeText(t.dataset.copy).then(()=>toast("Copiado ✓"),()=>{});}
+  if(t.dataset.rm){cart.splice(+t.dataset.rm,1);render();}
+  if(t.dataset.inc){cart[+t.dataset.inc].qty++;render();}
+  if(t.dataset.dec){const l=cart[+t.dataset.dec];l.qty--; if(l.qty<1) cart.splice(+t.dataset.dec,1);render();}
+});
+// limit checkbox count
+document.addEventListener("change",e=>{
+  const fs=e.target.closest("fieldset[data-need]"); if(!fs||e.target.type!=="checkbox") return;
+  const need=+fs.dataset.need, on=fs.querySelectorAll("input:checked");
+  if(on.length>need){e.target.checked=false;toast("Máximo "+need);}
+});
+function add(id){
+  const p=P.find(x=>x.id===id); let opts=null;
+  if(p.cena){
+    const box=$("#o-"+id), w=$("#w-"+id);
+    if(!box.classList.contains("on")){box.classList.add("on");box.previousElementSibling.textContent="Ocultar opciones ▴";w.textContent="Elige tus opciones y vuelve a tocar Agregar";return;}
+    opts={}; let ok=true;
+    box.querySelectorAll("fieldset").forEach(fs=>{const v=[...fs.querySelectorAll("input:checked")].map(i=>i.value);opts[fs.dataset.k]=v;if(v.length!==+fs.dataset.need) ok=false;});
+    if(!ok){w.textContent="Completa: 2 carnes, 1 arroz, 2 purés y 1 ensalada";return;}
+    w.textContent="";
+  }
+  const key=id+JSON.stringify(opts||{}); const ex=cart.find(l=>l.key===key);
+  if(ex) ex.qty++; else cart.push({key,pid:id,qty:1,opts});
+  render(); toast("Agregado ✓");
+}
+function optText(o){return o?`${o.carnes.join(" + ")} · ${o.arroz[0]} · ${o.pure.join(" + ")} · ${o.ens[0]}`:"";}
+function render(){
+  const n=cart.reduce((a,l)=>a+l.qty,0), tot=cart.reduce((a,l)=>a+l.qty*P.find(p=>p.id===l.pid).p,0);
+  $("#bar").classList.toggle("on",n>0); $("#barN").textContent=n+(n===1?" producto":" productos"); $("#barT").textContent=money(tot); $("#tot").textContent=money(tot);
+  $("#lines").innerHTML=cart.length?cart.map((l,i)=>{const p=P.find(x=>x.id===l.pid);return `<div class="line"><div><b>${esc(p.t)}</b><div class="x">Pack ${p.id}${l.opts?" · "+esc(optText(l.opts)):""}</div>
+    <div class="qty" style="display:inline-flex;margin-top:6px"><button data-dec="${i}">−</button><span>${l.qty}</span><button data-inc="${i}">+</button></div></div>
+    <div style="text-align:right"><b>${money(l.qty*p.p)}</b><br><button data-rm="${i}">quitar</button></div></div>`}).join(""):`<p class="desc">Aún no agregaste productos.</p>`;
+  if(!n) $("#drawer").classList.remove("on");
+}
+$("#openCart").onclick=()=>$("#drawer").classList.add("on");
+$("#closeCart").onclick=()=>$("#drawer").classList.remove("on");
+$("#drawer").onclick=e=>{if(e.target.id==="drawer") $("#drawer").classList.remove("on");};
+document.querySelectorAll("input[name=ent]").forEach(r=>r.onchange=()=>{$("#fdist").style.display=r.value==="Recojo"&&r.checked?"none":"flex";});
+$("#send").onclick=()=>{
+  if(!cart.length) return;
+  const name=$("#fn").value.trim(), date=$("#fd").value, ent=document.querySelector("input[name=ent]:checked").value, addr=$("#fa").value.trim(), msg=$("#fm").value.trim();
+  if(!name){$("#cartWarn").textContent="Escribe tu nombre, por favor.";$("#fn").focus();return;}
+  $("#cartWarn").textContent="";
+  let t="Hola M&S Catering, quiero hacer este pedido navideño:\n\n";
+  let tot=0;
+  cart.forEach(l=>{const p=P.find(x=>x.id===l.pid);tot+=l.qty*p.p;
+    t+=`• ${l.qty} x Pack ${p.id} – ${p.t} (${money(l.qty*p.p)})\n`;
+    if(l.opts) t+=`   Carnes: ${l.opts.carnes.join(", ")}\n   Arroz: ${l.opts.arroz[0]}\n   Purés: ${l.opts.pure.join(", ")}\n   Ensalada: ${l.opts.ens[0]}\n`;});
+  t+=`\nTotal: ${money(tot)} (sin delivery)\n\nNombre: ${name}\n`;
+  if(date){const [y,m,d]=date.split("-");t+=`Fecha: ${d}/${m}/${y}\n`;}
+  t+=`Entrega: ${ent}${ent==="Delivery"&&addr?" – "+addr:""}\n`;
+  if(msg) t+=`Comentarios: ${msg}\n`;
+  window.open(waLink(t),"_blank");
+};
+$("#waTop").href=waLink("Hola M&S Catering, quiero información sobre sus packs navideños.");
+$("#waNum").href=waLink("Hola M&S Catering, quiero hacer un pedido navideño.");
+$("#waCorp").href=waLink("Hola M&S Catering, quiero una cotización para un evento/regalos de mi empresa.");
+["waTop","waNum","waCorp"].forEach(i=>{$("#"+i).target="_blank";$("#"+i).rel="noopener";});
+const today=new Date();$("#fd").min=today.toISOString().slice(0,10);
+</script>
+</body>
+</html>
