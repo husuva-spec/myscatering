@@ -342,6 +342,7 @@ function home() {
     <a class="act" href="#negocio"><span class="ic">⚙️</span><b>Mi negocio</b><span>WhatsApp, cuentas y textos</span></a>
     <a class="act wide" href="#fotos"><span class="ic">🖼️</span><div><b>Fotos de la web</b><span>“Así llegan tus pedidos” y “Nuestros trabajos”</span></div></a>
   </div>
+  ${a ? `<a class="act wide" style="margin-top:12px" href="./?catalogo=${encodeURIComponent(a.id)}#temporada" target="_blank" rel="noopener"><span class="ic">📄</span><div><b>Catálogo PDF</b><span>${esc(a.e)} ${esc(a.n)} · para compartir por WhatsApp</span></div></a>` : ""}
   <h2 class="h2">Últimos cambios</h2>
   ${LOG.length ? `<ul class="log">${LOG.slice(0, 8).map(l => `<li><span>${esc(l[0])}</span><span>${esc(l[1])}</span><time>${esc(ago(l[2]))}</time></li>`).join("")}</ul>` : `<p class="sub">Aún no hay cambios.</p>`}
   <button class="out" id="out">Salir de M&amp;S Admin en este teléfono</button>`;
@@ -501,6 +502,8 @@ function specialForm(id) {
    <div class="card"><h3>Productos del especial</h3><span class="hint">Toca un producto para cambiar su precio, nombre o foto.</span>
      <div id="spk" style="display:flex;flex-direction:column;gap:8px"></div>
      <button type="button" class="add" id="apk">＋ Agregar producto</button></div>
+   ${s.id ? `<div class="card"><h3>Catálogo PDF</h3><span class="hint">Se arma con lo último que guardaste. Guarda primero tus cambios y espera unos 2 minutos.</span>
+     <a class="btn go" style="text-align:center;text-decoration:none" href="./?catalogo=${encodeURIComponent(s.id)}#temporada" target="_blank" rel="noopener">📄 Crear catálogo PDF para WhatsApp</a></div>` : ""}
    <div id="scfm"></div>
   </div>
   <div class="side"><div class="pv-lab">Así se verá en tu portada</div><div id="spv" style="margin-top:8px"></div><p class="hint" id="sst"></p></div>
