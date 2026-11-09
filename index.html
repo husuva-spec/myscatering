@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Great+Vibes&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#FBF6EC;--cream2:#F3EADB;--red:#A8321E;--green:#4E6B4B;--sage:#7C9677;--ink:#3B2A24;--muted:#7a6a62;--line:#e8dccb}
+:root{--sp-main:#A8321E;--sp-dark:#7D2414;--sp-acc:#4E6B4B;--cream:#FBF6EC;--cream2:#F3EADB;--red:#A8321E;--green:#4E6B4B;--sage:#7C9677;--ink:#3B2A24;--muted:#7a6a62;--line:#e8dccb}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{background:var(--cream);color:var(--ink);font-family:'Alegreya Sans',system-ui,sans-serif;font-size:17px;line-height:1.45;padding-bottom:90px}
@@ -168,15 +168,17 @@ footer{text-align:center;color:var(--muted);padding:40px 16px 20px;font-size:15p
 .nav nav.tabs::-webkit-scrollbar{display:none}
 .nav nav.tabs a{border:1px solid var(--line);background:#fff;font-weight:500}
 .nav nav.tabs a.on{background:var(--green);color:#fff;border-color:var(--green)}
-.nav nav.tabs a.season{border-color:var(--red);color:var(--red);font-weight:700}
-.nav nav.tabs a.season.on{background:var(--red);color:#fff}
+.nav nav.tabs a.season{border-color:var(--sp-main);color:var(--sp-main);font-weight:700}
+.nav nav.tabs a.season.on{background:var(--sp-main);color:#fff}
+#p-navidad{--red:var(--sp-main);--green:var(--sp-acc)}
+[hidden]{display:none!important}
 .navcart{border:0;background:var(--cream2);border-radius:99px;padding:8px 14px;font:700 16px 'Alegreya Sans';color:var(--ink);cursor:pointer}
 .navcart.on{background:var(--green);color:#fff}
 html{scroll-padding-top:110px}
 .page-s{display:none;min-height:60vh}
 .page-s.on{display:block}
 .h2{font-size:clamp(28px,4.5vw,38px);margin:34px 0 14px}
-.promo{display:flex;gap:20px;align-items:center;background:linear-gradient(120deg,var(--red),#7d2414);color:#fff;border-radius:26px;padding:20px;text-decoration:none;margin-top:10px;box-shadow:0 12px 30px rgba(168,50,30,.25)}
+.promo{display:flex;gap:20px;align-items:center;background:linear-gradient(120deg,var(--sp-main),var(--sp-dark));color:#fff;border-radius:26px;padding:20px;text-decoration:none;margin-top:10px;box-shadow:0 12px 30px rgba(59,42,36,.22)}
 .promo img{width:150px;height:150px;border-radius:50%;object-fit:cover;flex:none;border:5px solid rgba(255,255,255,.3)}
 .promo .ptitle{font-family:'Playfair Display';font-size:clamp(30px,5vw,42px);font-weight:700;line-height:1.05;margin:4px 0 6px}
 @media(max-width:560px){.promo{flex-direction:column;text-align:center}.promo img{width:130px;height:130px}}
@@ -241,7 +243,7 @@ html{scroll-padding-top:110px}
 </div>
 <nav class="tabs wrap" id="tabs">
  <a href="#inicio" data-tab="inicio">Inicio</a>
- <a href="#navidad" data-tab="navidad" class="season" id="tabSeason">🎄 Especial Navidad</a>
+ <a href="#temporada" data-tab="navidad" class="season" id="tabSeason">🎄 Especial Navidad</a>
  <a href="#carta" data-tab="carta">Carta</a>
  <a href="#eventos" data-tab="eventos">Eventos y regalos</a>
  <a href="#contacto" data-tab="contacto">Pagos y contacto</a>
@@ -264,12 +266,12 @@ html{scroll-padding-top:110px}
  </div></div>
 
  <div class="wrap">
-  <a href="#navidad" class="promo" id="promoSeason">
-   <img src="cena4.jpg" alt="">
+  <a href="#temporada" class="promo" id="promoSeason">
+   <img id="promoImg" src="cena4.jpg" alt="">
    <div><div class="kick" style="color:#fff;opacity:.9">Especial de temporada</div>
-    <div class="ptitle">🎄 Navidad 2026</div>
-    <div>Cenas navideñas desde <b>S/ 220</b>, Christmas Bites desde <b>S/ 75</b>, tablas y dulces.</div>
-    <span class="btn" style="background:#fff;color:var(--red);margin-top:12px">Ver especial →</span></div>
+    <div class="ptitle" id="promoTitle">🎄 Navidad 2026</div>
+    <div id="promoText">Cenas navideñas desde <b>S/ 220</b>, Christmas Bites desde <b>S/ 75</b>, tablas y dulces.</div>
+    <span class="btn" style="background:#fff;color:var(--sp-main);margin-top:12px">Ver especial →</span></div>
   </a>
 
   <h2 class="h2">¿Qué se te antoja?</h2>
@@ -279,13 +281,13 @@ html{scroll-padding-top:110px}
   <p class="desc" style="margin:-6px 0 12px">Fotos reales: bandejas selladas con nuestra etiqueta, listas para servir.</p>
   <div class="strip"><img src="r0015.jpg" alt="Bandeja de pavo con etiqueta M&S" loading="lazy"><img src="r0022.jpg" alt="Bandeja lista para entregar" loading="lazy"><img src="r0040.jpg" alt="Bandeja de pavo sellada" loading="lazy"><img src="r0012.jpg" alt="Bandeja de cena navideña" loading="lazy"><img src="r0020.jpg" alt="Keke navideño en caja" loading="lazy"><img src="r0046.jpg" alt="Keke navideño de regalo" loading="lazy"></div>
   <div class="chef">
-   <img src="maribel-retrato.jpg" alt="Maribel, chef y fundadora de M&amp;S Catering">
+   <img class="chefImg" src="maribel-retrato.jpg" alt="Maribel, chef y fundadora de M&amp;S Catering">
    <div>
     <div class="kick">Conoce a nuestra chef</div>
     <h2 style="font-size:clamp(30px,5vw,42px);margin:4px 0 2px">Maribel</h2>
     <div class="sub" style="color:var(--green);font-weight:700;margin-bottom:10px">Chef y fundadora de M&amp;S Catering</div>
-    <p>Detrás de cada plato está Maribel. Con sazón casera y mucho cariño prepara la panceta a la caja china, la comida criolla y arequipeña, las pastas y los postres que llegan a tu mesa.</p>
-    <p style="margin-top:8px">Para ella, cocinar es compartir: por eso cuida cada detalle de tu pedido, desde una porción individual hasta el buffet de tu evento.</p>
+<div class="chefTxt"><p>Detrás de cada plato está Maribel. Con sazón casera y mucho cariño prepara la panceta a la caja china, la comida criolla y arequipeña, las pastas y los postres que llegan a tu mesa.</p>
+    <p style="margin-top:8px">Para ella, cocinar es compartir: por eso cuida cada detalle de tu pedido, desde una porción individual hasta el buffet de tu evento.</p></div>
     <p class="script" style="font-size:34px;margin-top:6px">¡Buen provecho!</p>
    </div>
   </div>
@@ -302,12 +304,15 @@ html{scroll-padding-top:110px}
 <!-- ============ NAVIDAD ============ -->
 <section class="page-s" id="p-navidad">
  <div class="wrap">
-  <div class="sbanner"><img src="cena4.jpg" alt=""><div><div class="kick">Especial de temporada · Packs 01 al 11</div><h1 style="font-size:clamp(40px,7vw,64px)">Esta Navidad,<span class="script" style="display:block">nosotros cocinamos</span></h1></div></div>
-  <section class="cat" id="cenas"><div class="cat-head"><img src="cena4.jpg" alt=""><div><h2>Cena Navideña</h2><p>2 carnes, 1 arroz, 2 purés y 1 ensalada a tu elección.</p></div></div><div class="grid" id="g-cenas"></div></section>
+  <div class="sbanner" id="sbXmas"><img src="cena4.jpg" alt=""><div><div class="kick">Especial de temporada · Packs 01 al 11</div><h1 style="font-size:clamp(40px,7vw,64px)">Esta Navidad,<span class="script" style="display:block">nosotros cocinamos</span></h1></div></div>
+  <div class="sbanner" id="sbGen" hidden><img id="sbImg" src="cena4.jpg" alt=""><div><div class="kick">Especial de temporada</div><h1 id="sbTitle" style="font-size:clamp(40px,7vw,64px)"></h1><p id="sbText" style="font-size:18px;margin-top:6px"></p></div></div>
+  <div id="xmasParts"><section class="cat" id="cenas"><div class="cat-head"><img src="cena4.jpg" alt=""><div><h2>Cena Navideña</h2><p>2 carnes, 1 arroz, 2 purés y 1 ensalada a tu elección.</p></div></div><div class="grid" id="g-cenas"></div></section>
   <section class="cat" id="bites"><div class="cat-head"><img src="bites.jpg" alt=""><div><h2>Christmas Bites</h2><p>Arma tu pack de bocaditos y comparte esta Navidad.</p></div></div><div class="grid" id="g-bites"></div>
    <div class="note">Pedido mínimo por bocadito: <b>10 unidades</b>. Mira la lista de bocaditos en la <a href="#carta-bocaditos">carta</a> y escribe en tu pedido cuáles prefieres.</div></section>
   <section class="cat"><div class="cat-head"><img src="corona.jpg" alt=""><div><h2>Tablas navideñas</h2><p>El centro perfecto para tus reuniones.</p></div></div><div class="grid" id="g-tablas"></div></section>
-  <section class="cat"><div class="cat-head"><img src="keke.jpg" alt=""><div><h2>Dulces navideños</h2><p>Para tu mesa o para regalar.</p></div></div><div class="grid" id="g-dulces"></div></section>
+  <section class="cat"><div class="cat-head"><img src="keke.jpg" alt=""><div><h2>Dulces navideños</h2><p>Para tu mesa o para regalar.</p></div></div><div class="grid" id="g-dulces"></div></section></div>
+  <section class="cat" id="spGen" hidden><div class="grid" id="g-sp"></div>
+   <div class="note" id="spEmpty" hidden>Muy pronto los productos de este especial. <a id="waSp" href="#">Escríbenos por WhatsApp</a> y te contamos.</div></section>
  </div>
 </section>
 
@@ -315,7 +320,7 @@ html{scroll-padding-top:110px}
 <section class="page-s" id="p-carta">
  <div class="wrap">
   <div class="kick" style="margin-top:28px">Todo el año</div><h1 style="font-size:clamp(40px,7vw,60px)">Nuestra carta</h1>
-  <p class="desc" style="margin-top:6px">Porciones individuales con precio fijo; para bandejas, eventos y productos "a consultar" te enviamos la cotización por WhatsApp. <b>Pedidos con 3 días de anticipación.</b></p>
+  <p class="desc" style="margin-top:6px">Porciones individuales con precio fijo; para bandejas, eventos y productos "a consultar" te enviamos la cotización por WhatsApp. <b id="diasTxt">Pedidos con 3 días de anticipación.</b></p>
   <div class="catwrap"><div class="catnav" id="catnav"></div></div>
   <div id="cartaBox"></div>
   <section class="cat" id="carta-bocaditos"><div class="cat-head"><img src="bites.jpg" alt=""><div><h2>Bocaditos para eventos</h2><p>Salados y dulces · pedido mínimo 10 unidades por bocadito.</p></div></div>
@@ -352,13 +357,13 @@ html{scroll-padding-top:110px}
   <p style="margin:8px 0 18px">Buffets criollos, mesas de piqueos, panceta a la caja china, lasagnas y cajas de regalo para tu familia, tu equipo o tus clientes. Cuéntanos tu evento y te armamos una propuesta.</p>
   <div class="grid" id="g-eventos"></div>
   <div class="chef">
-   <img src="maribel-retrato.jpg" alt="Maribel, chef y fundadora de M&amp;S Catering">
+   <img class="chefImg" src="maribel-retrato.jpg" alt="Maribel, chef y fundadora de M&amp;S Catering">
    <div>
     <div class="kick">Conoce a nuestra chef</div>
     <h3 style="font-size:clamp(30px,5vw,42px);margin:4px 0 2px">Maribel</h3>
     <div class="sub" style="color:var(--green);font-weight:700;margin-bottom:10px">Chef y fundadora de M&amp;S Catering</div>
-    <p>Detrás de cada plato está Maribel. Con sazón casera y mucho cariño prepara la panceta a la caja china, la comida criolla y arequipeña, las pastas y los postres que llegan a tu mesa.</p>
-    <p style="margin-top:8px">Para ella, cocinar es compartir: por eso cuida cada detalle de tu pedido, desde una porción individual hasta el buffet de tu evento.</p>
+<div class="chefTxt"><p>Detrás de cada plato está Maribel. Con sazón casera y mucho cariño prepara la panceta a la caja china, la comida criolla y arequipeña, las pastas y los postres que llegan a tu mesa.</p>
+    <p style="margin-top:8px">Para ella, cocinar es compartir: por eso cuida cada detalle de tu pedido, desde una porción individual hasta el buffet de tu evento.</p></div>
     <p class="script" style="font-size:34px;margin-top:6px">¡Buen provecho!</p>
    </div>
   </div>
@@ -374,17 +379,17 @@ html{scroll-padding-top:110px}
   <h1 style="font-size:clamp(40px,7vw,60px);margin:28px 0 14px">Pagos y contacto</h1>
   <div class="pay">
    <div class="item"><b style="color:var(--red)">Medios de pago</b><div id="accs"></div>
-    <div class="desc">Pagos por transferencia Interbank, Yape o Plin. Precios no incluyen delivery.</div></div>
+    <div class="desc" id="payNote">Pagos por transferencia Interbank, Yape o Plin. Precios no incluyen delivery.</div></div>
    <div class="item"><b style="color:var(--red)">Contacto</b>
     <div class="acc"><b>WhatsApp</b><a id="waNum" href="#" style="color:var(--green);font-weight:700">+51 997 840 228</a></div>
-    <div class="acc"><b>Correo</b><a href="mailto:myscatering@gmail.com" style="color:var(--ink)">myscatering@gmail.com</a></div>
-    <div class="acc"><b>Facebook</b><a href="https://www.facebook.com/profile.php?id=100044279238014" target="_blank" rel="noopener" style="color:var(--ink)">M&amp;S Catering.</a></div>
-    <div class="acc"><b>Zona</b><span>Santiago de Surco, Lima</span></div></div>
+    <div class="acc"><b>Correo</b><a id="bizMail" href="mailto:myscatering@gmail.com" style="color:var(--ink)">myscatering@gmail.com</a></div>
+    <div class="acc"><b>Facebook</b><a id="bizFb" href="https://www.facebook.com/profile.php?id=100044279238014" target="_blank" rel="noopener" style="color:var(--ink)">M&amp;S Catering.</a></div>
+    <div class="acc"><b>Zona</b><span id="bizZona">Santiago de Surco, Lima</span></div></div>
   </div>
  </div>
 </section>
 
-<footer>© <span id="yr">2026</span> M&amp;S Catering · Pastas · Grill · Pastelería · Santiago de Surco, Lima</footer>
+<footer>© <span id="yr">2026</span> M&amp;S Catering · Pastas · Grill · Pastelería · <span id="footZona">Santiago de Surco, Lima</span></footer>
 
 <div class="bar" id="bar"><div class="wrap">
  <div class="t"><span id="barN">0 productos</span><br><b id="barT">S/ 0</b></div>
@@ -426,17 +431,20 @@ html{scroll-padding-top:110px}
 // =====================================================================
 //  M&S Catering – configuración fácil de editar
 // =====================================================================
-const WA = "51997840228";
+let WA = "51997840228";
+
+// Datos en vivo: la hoja de Google de M&S Admin. Si falla, se usa la carta de abajo.
+const DATA_URL = "https://script.google.com/macros/s/AKfycbyS66ecYfDjFhI3RIrTXlCjBLe8u6jhkqxbQK2F0_foH7Nv4CBxDUDDC_xHabKB0PWe/exec";
 
 // Temporada especial: se muestra solo entre estas fechas (AAAA-MM-DD).
 // Para el próximo año, cambia las fechas. Fuera de fechas, la sección se oculta sola.
 const SEASON = { id:"navidad", start:"2026-11-01", end:"2026-12-31" };
 
 // Medios de pago
-const ACC=[["Interbank","8213476366770"],["Yape / Plin","997 840 228"]];
+let ACC=[["Interbank","8213476366770"],["Yape / Plin","997 840 228"]];
 
 // Carta de todo el año. p:null = "Precio a consultar". Para poner precio: p:45
-const CARTA = [
+let CARTA = [
  {cat:"Platos al carbón y caja china", icon:"🔥", items:[
   {id:"cajaporcion", t:"Caja china · porción individual", sub:"250 g de panceta", desc:"250 g de crocante panceta de cerdo a la caja china, acompañada de camote, papa y ají.", p:35, img:"panceta-tabla"},
   {id:"panceta", t:"Panceta entera a la caja china", sub:"Pieza entera · por kilo · para eventos", desc:"Nuestra especialidad: crocante por fuera y jugosa por dentro. Para reuniones y eventos, cotiza por kilo o por número de invitados.", p:null, img:"panceta-en-caja"},
@@ -499,19 +507,52 @@ const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t.trimEnd()+"\n\
 function money(n){return "S/ "+n.toLocaleString("es-PE")}
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1800)}
 
-// ---------- temporada ----------
-const today=new Date().toISOString().slice(0,10);
+// ---------- datos en vivo ----------
+const BUILTIN_XMAS=XMAS.map(x=>({...x}));
+const IM=k=>!k?"":/^https?:/.test(k)?k:""+k+".jpg";
+const limaDay=()=>{try{return new Date().toLocaleDateString("en-CA",{timeZone:"America/Lima"})}catch(e){return new Date().toISOString().slice(0,10)}};
+const today=limaDay();
 const forceSeason=/[?&]navidad/.test(location.search);
-const seasonOn = forceSeason || (today>=SEASON.start && today<=SEASON.end);
+let SP={id:"navidad",n:"Navidad 2026",e:"🎄",ini:SEASON.start,fin:SEASON.end,x:"",img:"cena4",col:["#A8321E","#7D2414","#4E6B4B"],tpl:"navidad",packs:null,builtin:true};
+let seasonOn=forceSeason||(today>=SP.ini&&today<=SP.fin);
+let BIZ=null;
+function lum(h){const n=parseInt(String(h).slice(1),16);if(isNaN(n))return 0;const c=[n>>16,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+function applyData(d){
+  if(!d||!Array.isArray(d.dishes)||!Array.isArray(d.cats))return false;
+  const cats=d.cats.map(c=>({cat:String(c.n||""),icon:String(c.e||""),items:d.dishes.filter(x=>x&&x.c===c.id&&x.t).map(x=>({id:String(x.id),t:String(x.t),sub:String(x.sub||""),desc:String(x.desc||""),p:(x.p===null||x.p===""||x.p===undefined||isNaN(+x.p))?null:+x.p,img:String(x.img||"")}))})).filter(c=>c.cat&&c.items.length);
+  if(cats.length)CARTA=cats;
+  const b=d.biz||{};
+  const wa=String(b.wa||"").replace(/\D/g,"");if(wa.length>=9)WA=wa.length===9?"51"+wa:wa;
+  if(Array.isArray(b.acc)&&b.acc.length)ACC=b.acc.filter(a=>a&&a[0]&&a[1]).map(a=>[String(a[0]),String(a[1])]);
+  BIZ=b;
+  if(Array.isArray(d.specials)){
+    const on=d.specials.filter(x=>x&&x.ini&&x.fin&&today>=x.ini&&today<=x.fin);
+    let a=on[0]||null;
+    if(!a&&forceSeason)a=d.specials.find(x=>x.tpl==="navidad")||null;
+    if(a){SP={...a,packs:Array.isArray(a.packs)?a.packs:[],col:Array.isArray(a.col)&&a.col.length>=2?a.col:["#A8321E","#7D2414","#4E6B4B"]};seasonOn=true;}
+    else seasonOn=false;
+  }
+  return true;
+}
+function spItems(){
+  if(SP.tpl==="navidad"){
+    if(!SP.packs)return BUILTIN_XMAS.map(x=>({...x}));
+    const out=[];
+    for(const x of BUILTIN_XMAS){const k=SP.packs.find(q=>String(q.id)===x.id);if(k)out.push({...x,t:k.t||x.t,sub:k.sub||"",desc:k.d||x.desc||"",p:k.p==null||k.p===""?null:+k.p,img:k.img||x.img||""});}
+    for(const k of SP.packs)if(!BUILTIN_XMAS.some(x=>x.id===String(k.id)))out.push({id:String(k.id),grp:"extra",t:k.t,sub:k.sub||"",desc:k.d||"",p:k.p==null||k.p===""?null:+k.p,img:k.img||""});
+    return out;
+  }
+  return (SP.packs||[]).filter(k=>k&&k.t).map(k=>({id:String(k.id),grp:"extra",t:String(k.t),sub:String(k.sub||""),desc:String(k.d||""),p:k.p==null||k.p===""?null:+k.p,img:String(k.img||"")}));
+}
 const ESPECIAL={id:"especial",t:"Pedido especial",sub:"",p:null,img:"especial"};
-const ALL = [...(seasonOn?XMAS:[]), ...CARTA.flatMap(c=>c.items), ...BOCADITOS, ...EVENTOS, ESPECIAL];
+let ALL=[], SPI=[];
 const P = id => ALL.find(x=>x.id===id);
 const tag = p => /^\d+$/.test(p.id) ? `<span class="tag">Pack ${p.id}</span>` : "";
 
 // ---------- tarjetas ----------
 function card(p){
-  const img=p.img?`<div class="ph"><img class="bg" src="${p.img}.jpg" alt="" aria-hidden="true" loading="lazy"><img class="fg" src="${p.img}.jpg" alt="${esc(p.t)}" loading="lazy"></div>`:"";
-  const btn=p.cena?`<button class="add" data-cena="${p.id}">Arma tu cena</button>`:`<button class="add" data-add="${p.id}">${p.p==null?"Consultar":"Agregar"}</button>`;
+  const img=p.img?`<div class="ph"><img class="bg" src="${IM(p.img)}" alt="" aria-hidden="true" loading="lazy"><img class="fg" src="${IM(p.img)}" alt="${esc(p.t)}" loading="lazy"></div>`:"";
+  const btn=p.cena?`<button class="add" data-cena="${p.id}">Arma tu cena</button>`:`<button class="add" data-add="${esc(p.id)}">${p.p==null?"Consultar":"Agregar"}</button>`;
   const price=p.p==null?`<span class="ask">Precio a consultar</span>`:`<span class="price"><small>S/</small>${p.p}</span>`;
   const hint=p.cena?`<div class="hint">Tú eliges: 2 carnes · 1 arroz · 2 purés · 1 ensalada</div>`:"";
   return `<article class="item ${img?"has-img":""}">${img}<div class="${img?"body":""}" style="${img?"":"display:flex;flex-direction:column;gap:8px;flex:1"}">
@@ -519,42 +560,80 @@ function card(p){
    <div class="row">${price}${btn}</div></div></article>`;
 }
 function slug(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-")}
-if(seasonOn){ for(const g of ["cenas","bites","tablas","dulces"]) $("#g-"+g).innerHTML=XMAS.filter(p=>p.grp===g).map(card).join(""); }
-CARTA.forEach(c=>c.items.forEach(i=>{i.catLabel=c.icon+" "+c.cat;i.catSlug=slug(c.cat);}));
-$("#cartaBox").innerHTML=`<div class="grid" id="cartaGrid">${CARTA.flatMap(c=>c.items).map(p=>card(p).replace('<article class="item','<article data-c="'+p.catSlug+'" class="item')).join("")}</div>`;
-$("#catnav").innerHTML=[`<a href="#carta" data-f="" class="on">Todo</a>`,...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}" data-f="${slug(c.cat)}">${c.icon} ${esc(c.cat)}</a>`),`<a href="#carta-bocaditos" data-f="bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
 function filterCarta(f){
   document.querySelectorAll("#cartaGrid > article").forEach(a=>a.style.display=(!f||a.dataset.c===f)?"":"none");
   const bo=document.getElementById("carta-bocaditos"); if(bo) bo.style.display=(!f||f==="bocaditos")?"":"none";
   document.querySelectorAll("#catnav a[data-f]").forEach(a=>a.classList.toggle("on",a.dataset.f===(f||"")));
 }
-$("#g-bocaditos").innerHTML=BOCADITOS.map(card).join("");
-$("#g-eventos").innerHTML=EVENTOS.map(card).join("");
-$("#tiles").innerHTML=[...(seasonOn?[["#navidad","cena4","🎄 Especial Navidad","Cenas, bites, tablas y dulces"]]:[]),
-  ...CARTA.map(c=>["#carta-"+slug(c.cat),c.items[0].img,c.icon+" "+c.cat,c.items.map(i=>i.t).join(" · ")]),
-  ["#carta-bocaditos","bites","🥪 Bocaditos","Salados y dulces para eventos"],["#eventos","buffet","🎉 Eventos y regalos","Buffets y cajas de regalo"],["#especial","especial","✍️ Pedidos especiales","¿Quieres otro plato? Pídelo aquí"]]
-  .map(([h,img,t,s])=>`<a class="tile" href="${h}"><img src="${img}.jpg" alt="" loading="lazy"><div><b>${esc(t)}</b><span>${esc(s)}</span></div></a>`).join("");
+const spShort=()=>String(SP.n||"").replace(/\s*\d{4}\s*$/,"");
+function paint(){
+  SPI=seasonOn?spItems():[];
+  ALL=[...SPI, ...CARTA.flatMap(c=>c.items), ...BOCADITOS, ...EVENTOS, ESPECIAL];
+  // especial de temporada: colores, pestaña, banner
+  const [m,dk,ac]=SP.col||[];const R=document.documentElement.style;
+  R.setProperty("--sp-main",m||"#A8321E");R.setProperty("--sp-dark",dk||"#7D2414");
+  const acc=ac&&lum(ac)<.36?ac:(dk||"#4E6B4B");R.setProperty("--sp-acc",acc);
+  ["#tabSeason","#promoSeason","#p-navidad"].forEach(s=>$(s).hidden=!seasonOn);
+  if(seasonOn){
+    const xm=SP.tpl==="navidad";
+    $("#tabSeason").textContent=`${SP.e||"🎉"} Especial ${spShort()}`;
+    if(!SP.builtin){$("#promoImg").src=IM(SP.img)||IM("cena4");$("#promoTitle").textContent=`${SP.e||""} ${SP.n}`.trim();$("#promoText").textContent=SP.x||"";}
+    $("#sbXmas").hidden=!xm;$("#xmasParts").hidden=!xm;$("#sbGen").hidden=xm;
+    if(xm){for(const g of ["cenas","bites","tablas","dulces"]){const it=SPI.filter(p=>p.grp===g);$("#g-"+g).innerHTML=it.map(card).join("");$("#g-"+g).closest("section").hidden=!it.length;}}
+    else{$("#sbImg").src=IM(SP.img)||IM("cena4");$("#sbTitle").textContent=`${SP.e||""} ${spShort()}`.trim();$("#sbText").textContent=SP.x||"";}
+    const ex=SPI.filter(p=>p.grp==="extra");
+    $("#g-sp").innerHTML=ex.map(card).join("");$("#spGen").hidden=xm&&!ex.length;$("#spEmpty").hidden=!!ex.length||xm;
+  }
+  CARTA.forEach(c=>c.items.forEach(i=>{i.catLabel=c.icon+" "+c.cat;i.catSlug=slug(c.cat);}));
+  $("#cartaBox").innerHTML=`<div class="grid" id="cartaGrid">${CARTA.flatMap(c=>c.items).map(p=>card(p).replace('<article class="item','<article data-c="'+p.catSlug+'" class="item')).join("")}</div>`;
+  $("#catnav").innerHTML=[`<a href="#carta" data-f="" class="on">Todo</a>`,...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}" data-f="${slug(c.cat)}">${esc(c.icon+" "+c.cat)}</a>`),`<a href="#carta-bocaditos" data-f="bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
+  $("#g-bocaditos").innerHTML=BOCADITOS.map(card).join("");
+  $("#g-eventos").innerHTML=EVENTOS.map(card).join("");
+  const spTile=SP.builtin?["#temporada","cena4","🎄 Especial Navidad","Cenas, bites, tablas y dulces"]:["#temporada",SP.img||(SPI[0]&&SPI[0].img)||"cena4",`${SP.e||"🎉"} Especial ${spShort()}`,SP.x||SPI.map(i=>i.t).join(" · ")];
+  $("#tiles").innerHTML=[...(seasonOn?[spTile]:[]),
+    ...CARTA.map(c=>["#carta-"+slug(c.cat),(c.items.find(i=>i.img)||{}).img||"especial",c.icon+" "+c.cat,c.items.map(i=>i.t).join(" · ")]),
+    ["#carta-bocaditos","bites","🥪 Bocaditos","Salados y dulces para eventos"],["#eventos","buffet","🎉 Eventos y regalos","Buffets y cajas de regalo"],["#especial","especial","✍️ Pedidos especiales","¿Quieres otro plato? Pídelo aquí"]]
+    .map(([h,img,t,s])=>`<a class="tile" href="${h}"><img src="${IM(img)}" alt="" loading="lazy"><div><b>${esc(t)}</b><span>${esc(s)}</span></div></a>`).join("");
+  $("#accs").innerHTML=ACC.map(([a,b])=>`<div class="acc"><b>${esc(a)}</b><span>${esc(b)}<button class="copy" data-copy="${esc(b.replace(/\s/g,""))}">copiar</button></span></div>`).join("");
+  if(BIZ){const b=BIZ;
+    if(b.nota)$("#payNote").textContent=b.nota;
+    if(b.mail){$("#bizMail").textContent=b.mail;$("#bizMail").href="mailto:"+b.mail;}
+    if(b.fb)$("#bizFb").textContent=b.fb; if(/^https:\/\//.test(b.fbUrl||""))$("#bizFb").href=b.fbUrl;
+    if(b.zona){$("#bizZona").textContent=b.zona;$("#footZona").textContent=b.zona;}
+    if(b.dias!==undefined&&b.dias!==""&&!isNaN(+b.dias))$("#diasTxt").textContent=+b.dias>0?`Pedidos con ${+b.dias} ${+b.dias===1?"día":"días"} de anticipación.`:"";
+    if(b.chef)document.querySelectorAll(".chefTxt").forEach(el=>el.innerHTML=String(b.chef).split(/\n\s*\n/).filter(x=>x.trim()).map((x,i)=>`<p${i?' style="margin-top:8px"':""}>${esc(x.trim())}</p>`).join(""));
+    if(b.chefImg)document.querySelectorAll(".chefImg").forEach(el=>el.src=IM(b.chefImg));
+  }
+  const num=WA.replace(/^51/,"");$("#waNum").textContent="+51 "+num.replace(/(\d{3})(\d{3})(\d{3})/,"$1 $2 $3");
+  $("#waTop").href=waLink("Hola M&S Catering, quiero información sobre sus productos.");
+  $("#waNum").href=waLink("Hola M&S Catering, quiero hacer un pedido.");
+  $("#waCorp").href=waLink("Hola M&S Catering, quiero una cotización para un evento/regalos.");
+  $("#waSp").href=waLink(`Hola M&S Catering, quiero información sobre el especial ${spShort()}.`);
+  ["waTop","waNum","waCorp","waSp"].forEach(i=>{$("#"+i).target="_blank";$("#"+i).rel="noopener";});
+}
 $("#m-sal").innerHTML=SAL.map(x=>`<li>${x}</li>`).join("");$("#m-dul").innerHTML=DUL.map(x=>`<li>${x}</li>`).join("");$("#m-esp").innerHTML=ESP.map(x=>`<li>${x}</li>`).join("");
-$("#accs").innerHTML=ACC.map(([a,b])=>`<div class="acc"><b>${a}</b><span>${b}<button class="copy" data-copy="${b.replace(/\s/g,"")}">copiar</button></span></div>`).join("");
-if(!seasonOn){$("#tabSeason").remove();$("#promoSeason").remove();$("#p-navidad").remove();}
 $("#yr").textContent=new Date().getFullYear();
+let CACHE_RAW=null;
+try{CACHE_RAW=localStorage.getItem("ms-data");if(CACHE_RAW)applyData(JSON.parse(CACHE_RAW));}catch(e){CACHE_RAW=null;}
+paint();
 
 // ---------- páginas (pestañas) ----------
-function route(){
+function route(quiet){
   let h=location.hash.slice(1)||"inicio";
   let page=h, anchor=null;
   if(page==="carta") filterCarta("");
   if(h.startsWith("carta-")||h==="especial"){page="carta";anchor=h;
     const f=h.slice(6); if(h.startsWith("carta-")&&(f==="bocaditos"||CARTA.some(c=>slug(c.cat)===f))){filterCarta(f);anchor="catnav";} else filterCarta("");}
   if(["cenas","bites"].includes(h)){page="navidad";anchor=h;}
-  if(!document.getElementById("p-"+page)) page="inicio";
+  if(h==="temporada")page="navidad";
+  const pg=document.getElementById("p-"+page); if(!pg||pg.hidden) page="inicio";
   document.querySelectorAll(".page-s").forEach(s=>s.classList.toggle("on",s.id==="p-"+page));
   document.querySelectorAll("#tabs a").forEach(a=>a.classList.toggle("on",a.dataset.tab===page));
   const el=anchor&&document.getElementById(anchor);
-  if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth"}),30); else window.scrollTo(0,0);
+  if(quiet)return; if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth"}),30); else window.scrollTo(0,0);
 }
 const setHdr=()=>document.documentElement.style.setProperty("--hdr",document.querySelector(".nav").offsetHeight+"px");setHdr();window.addEventListener("resize",setHdr);
-window.addEventListener("hashchange",route); route();
+window.addEventListener("hashchange",()=>route()); route();
 
 // ---------- Arma tu cena ----------
 const GROUPS=[["carnes","Carnes","Elige 2 porciones · puedes repetir (ej. Panceta ×2)",2,"multi"],["arroz","Arroz","Elige 1",1,"one"],["pure","Purés","Elige 2 porciones · puedes repetir",2,"multi"],["ens","Ensalada","Elige 1",1,"one"]];
@@ -565,7 +644,7 @@ function openCena(pid,editIndex=null){cm={pid,opts:editIndex!==null?JSON.parse(J
 function closeCena(){$("#cena").classList.remove("on");document.body.style.overflow="";cm=null;}
 function drawCena(){
   const p=P(cm.pid),o=cm.opts;
-  let h=`<div class="mhead"><img src="${p.img}.jpg" alt=""><div>${tag(p)}<h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div></div></div>`;
+  let h=`<div class="mhead"><img src="${IM(p.img)}" alt=""><div>${tag(p)}<h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div></div></div>`;
   for(const [k,label,help,need,kind] of GROUPS){
     const done=kind==="multi"?sum(o[k]):(o[k]?1:0);
     h+=`<div class="grp"><div class="ghead"><b>${label}</b><span class="cnt ${done===need?"ok":""}">${done} de ${need}${done===need?" ✓":""}</span></div><div class="help">${help}</div>`;
@@ -601,7 +680,7 @@ const lineLabel=(p,l)=>l&&l.opts&&l.opts.dish?`Pedido especial: ${l.opts.dish}`:
 function showAdded(l){
   const p=P(l.pid),{n,t,ask}=totals();
   $("#addedBody").innerHTML=`<div class="aok">✓ Agregado a tu pedido</div>
-   <div class="arow">${p.img?`<img src="${p.img}.jpg" alt="">`:`<div class="anum">${(p.t.match(/\d+/)||[""])[0]}<small>uds</small></div>`}
+   <div class="arow">${p.img?`<img src="${IM(p.img)}" alt="">`:`<div class="anum">${(p.t.match(/\d+/)||[""])[0]}<small>uds</small></div>`}
    <div><b>${esc(l.opts&&l.opts.dish?l.opts.dish:p.t)}</b><div class="x">${/^\d+$/.test(p.id)?"Pack "+p.id:""}${l.opts?"<br>"+esc(optText(l.opts)):""}</div>
    <div class="x">En tu pedido: <b>${l.qty}</b> · ${p.p==null?"precio a consultar":money(p.p)+" c/u"}</div></div></div>
    ${p.p==null?`<div class="note" style="margin-top:12px">Te enviaremos el precio por WhatsApp. En "Comentarios" puedes indicar cantidad de personas o detalles.</div>`:""}
@@ -658,10 +737,6 @@ $("#send").onclick=()=>{
   if(msg)m+=`Comentarios: ${msg}\n`;
   window.open(waLink(m.replace(/ /g," ")),"_blank");
 };
-$("#waTop").href=waLink("Hola M&S Catering, quiero información sobre sus productos.");
-$("#waNum").href=waLink("Hola M&S Catering, quiero hacer un pedido.");
-$("#waCorp").href=waLink("Hola M&S Catering, quiero una cotización para un evento/regalos.");
-["waTop","waNum","waCorp"].forEach(i=>{$("#"+i).target="_blank";$("#"+i).rel="noopener";});
 $("#fd").min=today;$("#eDate").min=today;
 $("#eAdd").onclick=()=>{
   const dish=$("#eDish").value.trim(),people=$("#ePeople").value.trim(),d=$("#eDate").value,notes=$("#eNotes").value.trim();
@@ -672,6 +747,20 @@ $("#eAdd").onclick=()=>{
   ["#eDish","#ePeople","#eDate","#eNotes"].forEach(s=>$(s).value="");
 };
 render();
+
+// Trae los datos nuevos de M&S Admin; si cambiaron, actualiza la página (solo si el pedido está vacío).
+if(DATA_URL){
+  const ctl=window.AbortController?new AbortController():null; const tm=setTimeout(()=>ctl&&ctl.abort(),12000);
+  fetch(DATA_URL+(DATA_URL.includes("?")?"&":"?")+"a=web",{signal:ctl&&ctl.signal}).then(r=>r.text()).then(raw=>{
+    clearTimeout(tm); const d=JSON.parse(raw); if(!d||d.ok===false)return;
+    const key=JSON.stringify({c:d.cats,d:d.dishes,s:d.specials,b:d.biz});
+    if(key===CACHE_RAW_KEY())return;
+    try{localStorage.setItem("ms-data",raw);}catch(e){}
+    if(cart.length||document.querySelector(".modal.on,.drawer.on"))return;
+    if(applyData(d)){paint();route(true);}
+  }).catch(()=>{});
+}
+function CACHE_RAW_KEY(){try{const d=JSON.parse(CACHE_RAW||"null");return d?JSON.stringify({c:d.cats,d:d.dishes,s:d.specials,b:d.biz}):"";}catch(e){return "";}}
 </script>
 </body>
 </html>
