@@ -210,7 +210,8 @@ html{scroll-padding-top:110px}
 .chef p{font-size:17px}
 @media(max-width:640px){.chef{flex-direction:column;text-align:center;padding:22px 18px}.chef>img{width:170px;height:170px}}
 
-#catnav{position:sticky;top:104px;z-index:5;background:var(--cream);padding:12px 0 10px;margin-bottom:6px}
+.catwrap{position:sticky;top:var(--hdr,112px);z-index:5;background:var(--cream)}
+#catnav{padding:12px 0 10px;margin-bottom:6px}
 #catnav a.on{background:var(--green);color:#fff}
 .ctag{background:#EEF3EC;color:var(--green);letter-spacing:.04em;text-transform:none;font-size:13px}
 #cartaGrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:8px}
@@ -220,6 +221,17 @@ html{scroll-padding-top:110px}
 .strip img{width:220px;height:220px;object-fit:cover;border-radius:18px;flex:none;scroll-snap-align:start}
 @media(max-width:640px){.strip img{width:170px;height:170px}}
 .gal{grid-template-columns:repeat(4,1fr)}
+
+
+.item.has-img > .ph{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--cream2)}
+.ph .bg{position:absolute;inset:-20px;width:calc(100% + 40px);height:calc(100% + 40px);object-fit:cover;filter:blur(18px) brightness(.9) saturate(1.1)}
+.ph .fg{position:relative;display:block;height:100%;width:auto;max-width:100%;margin:0 auto;object-fit:contain;box-shadow:0 0 24px rgba(0,0,0,.18)}
+
+@media(min-width:700px){#catnav{flex-wrap:wrap;overflow:visible}}
+@media(max-width:699px){
+ .catwrap:after{content:"›";position:absolute;right:0;top:12px;bottom:10px;width:46px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;font-size:30px;font-weight:700;color:var(--green);background:linear-gradient(90deg,rgba(251,246,236,0),var(--cream) 65%);pointer-events:none}
+ #catnav{padding-right:40px}
+}
 </style>
 </head>
 <body>
@@ -304,8 +316,8 @@ html{scroll-padding-top:110px}
  <div class="wrap">
   <div class="kick" style="margin-top:28px">Todo el año</div><h1 style="font-size:clamp(40px,7vw,60px)">Nuestra carta</h1>
   <p class="desc" style="margin-top:6px">Porciones individuales con precio fijo; para bandejas, eventos y productos "a consultar" te enviamos la cotización por WhatsApp. <b>Pedidos con 3 días de anticipación.</b></p>
-  <div class="catnav" id="catnav"></div>
-  <div id="carta"></div>
+  <div class="catwrap"><div class="catnav" id="catnav"></div></div>
+  <div id="cartaBox"></div>
   <section class="cat" id="carta-bocaditos"><div class="cat-head"><img src="bites.jpg" alt=""><div><h2>Bocaditos para eventos</h2><p>Salados y dulces · pedido mínimo 10 unidades por bocadito.</p></div></div>
    <div class="menu">
     <div style="background:var(--green)"><b>SALADOS</b><ul id="m-sal"></ul></div>
@@ -431,9 +443,6 @@ const CARTA = [
   {id:"asado", t:"Asado al horno", sub:"Cerdo o res, para compartir", desc:"Asado horneado con especias, jugoso por dentro y dorado por fuera. Pídelo entero o en rodajas.", p:null, img:"asado-horno"},
   {id:"pollo", t:"Pollo o pavo al horno", sub:"Entero, dorado y jugoso", desc:"Perfecto para almuerzos familiares y celebraciones.", p:null, img:"pollo-dorado"},
  ]},
- {cat:"Chicharrones", icon:"🥓", items:[
-  {id:"chicharron", t:"Chicharrón", sub:"Por kilo o en bandeja", desc:"Chicharrón crocante para tu desayuno, reunión o evento.", p:null, img:"chicharron-limon"},
- ]},
  {cat:"Pastas", icon:"🍝", items:[
   {id:"lasagna", t:"Lasagna", sub:"En bandeja para compartir", desc:"Lasagna casera gratinada. Consulta tamaños y sabores.", p:null, img:"lasagna"},
  ]},
@@ -442,6 +451,7 @@ const CARTA = [
   {id:"rocoto", t:"Rocoto relleno", sub:"Porción individual", desc:"Rocoto relleno con carne de res, acompañado de papas y queso al estilo arequipeño.", p:25, img:"rocoto"},
   {id:"aji", t:"Ají de gallina", sub:"Porción individual", desc:"Porción de ají de gallina acompañada de papas, arroz y huevo.", p:25, img:"ajiporcion"},
   {id:"carapulcra", t:"Carapulcra con panceta", sub:"Porción individual", desc:"Carapulcra con porción de panceta a la caja china, acompañada de porción de yuca.", p:30, img:"carapulcra"},
+  {id:"chicharron", t:"Chicharrón", sub:"Por kilo o en bandeja", desc:"Chicharrón crocante para tu desayuno, reunión o evento.", p:null, img:"chicharron-limon"},
   {id:"causa", t:"Causa rellena", sub:"Fuente para compartir", desc:"Causa limeña rellena y decorada, ideal para buffets.", p:null, img:"causa"},
   {id:"criollo", t:"Buffet criollo", sub:"En ollas tradicionales de barro", desc:"Ají de gallina, seco, cau cau, arroz, frejoles y más: lo mejor de nuestra gastronomía para tu evento. Tú eliges los platos.", p:null, img:"ollas-menu"},
  ]},
@@ -500,7 +510,7 @@ const tag = p => /^\d+$/.test(p.id) ? `<span class="tag">Pack ${p.id}</span>` : 
 
 // ---------- tarjetas ----------
 function card(p){
-  const img=p.img?`<img src="${p.img}.jpg" alt="${esc(p.t)}" loading="lazy">`:"";
+  const img=p.img?`<div class="ph"><img class="bg" src="${p.img}.jpg" alt="" aria-hidden="true" loading="lazy"><img class="fg" src="${p.img}.jpg" alt="${esc(p.t)}" loading="lazy"></div>`:"";
   const btn=p.cena?`<button class="add" data-cena="${p.id}">Arma tu cena</button>`:`<button class="add" data-add="${p.id}">${p.p==null?"Consultar":"Agregar"}</button>`;
   const price=p.p==null?`<span class="ask">Precio a consultar</span>`:`<span class="price"><small>S/</small>${p.p}</span>`;
   const hint=p.cena?`<div class="hint">Tú eliges: 2 carnes · 1 arroz · 2 purés · 1 ensalada</div>`:"";
@@ -511,10 +521,11 @@ function card(p){
 function slug(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-")}
 if(seasonOn){ for(const g of ["cenas","bites","tablas","dulces"]) $("#g-"+g).innerHTML=XMAS.filter(p=>p.grp===g).map(card).join(""); }
 CARTA.forEach(c=>c.items.forEach(i=>{i.catLabel=c.icon+" "+c.cat;i.catSlug=slug(c.cat);}));
-$("#carta").innerHTML=`<div class="grid" id="cartaGrid">${CARTA.flatMap(c=>c.items).map(p=>card(p).replace('<article class="item','<article data-c="'+p.catSlug+'" class="item')).join("")}</div>`;
-$("#catnav").innerHTML=[`<a href="#carta" data-f="" class="on">Todo</a>`,...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}" data-f="${slug(c.cat)}">${c.icon} ${esc(c.cat)}</a>`),`<a href="#carta-bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
+$("#cartaBox").innerHTML=`<div class="grid" id="cartaGrid">${CARTA.flatMap(c=>c.items).map(p=>card(p).replace('<article class="item','<article data-c="'+p.catSlug+'" class="item')).join("")}</div>`;
+$("#catnav").innerHTML=[`<a href="#carta" data-f="" class="on">Todo</a>`,...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}" data-f="${slug(c.cat)}">${c.icon} ${esc(c.cat)}</a>`),`<a href="#carta-bocaditos" data-f="bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
 function filterCarta(f){
   document.querySelectorAll("#cartaGrid > article").forEach(a=>a.style.display=(!f||a.dataset.c===f)?"":"none");
+  const bo=document.getElementById("carta-bocaditos"); if(bo) bo.style.display=(!f||f==="bocaditos")?"":"none";
   document.querySelectorAll("#catnav a[data-f]").forEach(a=>a.classList.toggle("on",a.dataset.f===(f||"")));
 }
 $("#g-bocaditos").innerHTML=BOCADITOS.map(card).join("");
@@ -534,7 +545,7 @@ function route(){
   let page=h, anchor=null;
   if(page==="carta") filterCarta("");
   if(h.startsWith("carta-")||h==="especial"){page="carta";anchor=h;
-    const f=h.slice(6); if(h.startsWith("carta-")&&CARTA.some(c=>slug(c.cat)===f)){filterCarta(f);anchor="catnav";} else filterCarta("");}
+    const f=h.slice(6); if(h.startsWith("carta-")&&(f==="bocaditos"||CARTA.some(c=>slug(c.cat)===f))){filterCarta(f);anchor="catnav";} else filterCarta("");}
   if(["cenas","bites"].includes(h)){page="navidad";anchor=h;}
   if(!document.getElementById("p-"+page)) page="inicio";
   document.querySelectorAll(".page-s").forEach(s=>s.classList.toggle("on",s.id==="p-"+page));
@@ -542,6 +553,7 @@ function route(){
   const el=anchor&&document.getElementById(anchor);
   if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth"}),30); else window.scrollTo(0,0);
 }
+const setHdr=()=>document.documentElement.style.setProperty("--hdr",document.querySelector(".nav").offsetHeight+"px");setHdr();window.addEventListener("resize",setHdr);
 window.addEventListener("hashchange",route); route();
 
 // ---------- Arma tu cena ----------
