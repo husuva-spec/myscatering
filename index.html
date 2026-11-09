@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>M&amp;S Catering · Navidad 2026</title>
-<meta name="description" content="Cenas navideñas, Christmas Bites, tablas gourmet y dulces. Pedidos por WhatsApp. Santiago de Surco, Lima.">
-<meta property="og:title" content="M&amp;S Catering · Catálogo Navideño 2026">
-<meta property="og:description" content="Cenas navideñas desde S/ 220, bocaditos desde S/ 75, tablas y dulces. ¡Haz tu pedido por WhatsApp!">
+<title>M&amp;S Catering · Catering, caja china y pastelería en Lima</title>
+<meta name="description" content="Panceta a la caja china, lasagnas, comida criolla, tablas, postres y catering para eventos en Lima. Pedidos por WhatsApp.">
+<meta property="og:title" content="M&amp;S Catering · Sabor y tradición en cada plato">
+<meta property="og:description" content="Caja china, comida criolla, tablas, postres y catering para eventos. ¡Especial de Navidad! Pide por WhatsApp.">
 <meta property="og:image" content="cena4.jpg">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,6 +111,8 @@ footer{text-align:center;color:var(--muted);padding:40px 16px 20px;font-size:15p
 .line{display:flex;gap:10px;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
 .line .x{font-size:14px;color:var(--muted)}
 .line button{border:0;background:none;color:var(--red);cursor:pointer;font-size:14px}
+.line > div:last-child{white-space:nowrap}
+.line button,.copy{font-family:inherit}
 .f{display:flex;flex-direction:column;gap:4px;margin-top:12px}
 .f label{font-weight:700;font-size:15px}
 .f input,.f textarea,.f select{font:16px 'Alegreya Sans';padding:11px 12px;border:1px solid #d8c9b4;border-radius:12px;background:#fff;color:var(--ink)}
@@ -120,92 +122,219 @@ footer{text-align:center;color:var(--muted);padding:40px 16px 20px;font-size:15p
 .close{position:absolute;right:14px;top:12px;border:0;background:none;font-size:30px;cursor:pointer;color:var(--muted)}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-size:15px;opacity:0;transition:opacity .2s;z-index:50;pointer-events:none}
 .toast.on{opacity:1}
+
+.hint{font-size:14px;color:var(--green);background:var(--cream2);border-radius:10px;padding:6px 10px;align-self:flex-start}
+.edit{border:1px solid var(--green);background:#fff;color:var(--green);border-radius:99px;padding:6px 12px;font:700 14px 'Alegreya Sans';cursor:pointer}
+.qty button:disabled{opacity:.25;cursor:default}
+.qty.sm button{width:36px;height:36px;font-size:22px}
+/* ventana cena */
+.modal{position:fixed;inset:0;z-index:45;background:rgba(40,28,24,.55);display:none;align-items:flex-end;justify-content:center}
+.modal.on{display:flex}
+.sheet{background:var(--cream);width:min(560px,100%);max-height:92vh;border-radius:24px 24px 0 0;display:flex;flex-direction:column;position:relative;animation:up .22s ease-out}
+@media(min-width:700px){.modal{align-items:center}.sheet{border-radius:24px}}
+@keyframes up{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+.sheet .scroll{overflow-y:auto;padding:22px 18px 10px}
+.sheet .foot2{padding:12px 18px 18px;border-top:1px solid var(--line);background:var(--cream);border-radius:0 0 24px 24px}
+.mhead{display:flex;gap:14px;align-items:center;margin-bottom:6px;padding-right:30px}
+.mhead img{width:84px;height:84px;border-radius:50%;object-fit:cover;flex:none}
+.mhead h3{font-size:24px;margin-top:4px}
+.mhead .sub{color:var(--green);font-weight:700;font-size:14px}
+.grp{background:#fff;border-radius:18px;padding:14px 14px 8px;margin-top:12px;box-shadow:0 2px 10px rgba(59,42,36,.05)}
+.ghead{display:flex;justify-content:space-between;align-items:center}
+.ghead b{font-family:'Playfair Display';color:var(--red);font-size:20px}
+.cnt{font-weight:700;font-size:14px;background:var(--cream2);color:var(--red);padding:3px 10px;border-radius:99px}
+.cnt.ok{background:#E3EEDF;color:var(--green)}
+.help{font-size:14px;color:var(--muted);margin:2px 0 8px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;font-size:16px;width:100%;margin-bottom:6px;border:1px solid var(--line);background:#fff;text-align:left;font-family:inherit;color:var(--ink)}
+.opt.sel{border-color:var(--green);background:#F1F6EF}
+.opt.pick{cursor:pointer;min-height:46px}
+.opt i{font-style:normal;color:var(--green);font-weight:700}
+#cenaOk{width:100%;justify-content:center;font-size:18px;padding:15px}
+#cenaOk:disabled{background:#b9b0a6;cursor:default}
+.x2{position:absolute;right:12px;top:10px;border:0;background:none;font-size:30px;cursor:pointer;color:var(--muted);z-index:2}
+/* agregado */
+.aok{font-family:'Playfair Display';font-size:26px;color:var(--green);font-weight:700;margin-bottom:12px}
+.arow{display:flex;gap:14px;align-items:center}
+.arow img,.anum{width:76px;height:76px;border-radius:50%;object-fit:cover;flex:none}
+.anum{background:var(--green);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 26px 'Playfair Display';line-height:1}
+.anum small{font:600 11px 'Alegreya Sans';letter-spacing:.1em}
+.arow .x{font-size:14px;color:var(--muted);margin-top:2px}
+.asum{display:flex;justify-content:space-between;align-items:center;background:var(--cream2);border-radius:14px;padding:12px 14px;margin-top:16px}
+.asum b{font-family:'Playfair Display';color:var(--red);font-size:24px}
+.abtns{display:flex;gap:10px;margin-top:14px}
+.abtns .btn{flex:1;justify-content:center}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:1}
+.nav nav.tabs{display:flex!important;gap:6px;overflow-x:auto;padding:0 16px 8px;scrollbar-width:none}
+.nav nav.tabs::-webkit-scrollbar{display:none}
+.nav nav.tabs a{border:1px solid var(--line);background:#fff;font-weight:500}
+.nav nav.tabs a.on{background:var(--green);color:#fff;border-color:var(--green)}
+.nav nav.tabs a.season{border-color:var(--red);color:var(--red);font-weight:700}
+.nav nav.tabs a.season.on{background:var(--red);color:#fff}
+.navcart{border:0;background:var(--cream2);border-radius:99px;padding:8px 14px;font:700 16px 'Alegreya Sans';color:var(--ink);cursor:pointer}
+.navcart.on{background:var(--green);color:#fff}
+html{scroll-padding-top:110px}
+.page-s{display:none;min-height:60vh}
+.page-s.on{display:block}
+.h2{font-size:clamp(28px,4.5vw,38px);margin:34px 0 14px}
+.promo{display:flex;gap:20px;align-items:center;background:linear-gradient(120deg,var(--red),#7d2414);color:#fff;border-radius:26px;padding:20px;text-decoration:none;margin-top:10px;box-shadow:0 12px 30px rgba(168,50,30,.25)}
+.promo img{width:150px;height:150px;border-radius:50%;object-fit:cover;flex:none;border:5px solid rgba(255,255,255,.3)}
+.promo .ptitle{font-family:'Playfair Display';font-size:clamp(30px,5vw,42px);font-weight:700;line-height:1.05;margin:4px 0 6px}
+@media(max-width:560px){.promo{flex-direction:column;text-align:center}.promo img{width:130px;height:130px}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.tile{display:flex;gap:12px;align-items:center;background:#fff;border-radius:20px;padding:10px;text-decoration:none;color:var(--ink);box-shadow:0 4px 14px rgba(59,42,36,.06)}
+.tile img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none}
+.tile b{display:block;font-family:'Playfair Display';color:var(--red);font-size:19px}
+.tile span{font-size:14px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.steps div{background:#fff;border-radius:20px;padding:16px;text-align:center}
+.steps i{display:inline-flex;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;font:700 22px 'Playfair Display';align-items:center;justify-content:center;font-style:normal}
+.steps b{display:block;font-family:'Playfair Display';color:var(--red);font-size:22px;margin-top:6px}
+.steps span{font-size:15px;color:var(--muted)}
+@media(max-width:560px){.steps{grid-template-columns:1fr}.steps div{display:flex;gap:12px;align-items:center;text-align:left}.steps b{margin:0}}
+.sbanner{display:flex;gap:22px;align-items:center;padding:28px 0 6px}
+.sbanner img{width:170px;height:170px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 12px 30px rgba(59,42,36,.2)}
+@media(max-width:560px){.sbanner{flex-direction:column;text-align:center}}
+.catnav{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
+.catnav a{white-space:nowrap;background:var(--cream2);color:var(--ink);text-decoration:none;padding:8px 14px;border-radius:99px;font-weight:700;font-size:15px}
+.ask{font-weight:700;color:var(--green);font-size:16px}
+.note a{color:var(--red);font-weight:700}
+
+.espbox{display:flex;gap:22px;background:#fff;border-radius:26px;padding:22px;box-shadow:0 6px 24px rgba(59,42,36,.08);border:2px dashed var(--pink)}
+.espbox>img{width:150px;height:150px;border-radius:50%;object-fit:cover;flex:none}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.espbox{flex-direction:column}.espbox>img{width:110px;height:110px}.f2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <header class="nav"><div class="wrap">
- <img src="logo.png" alt="M&amp;S Catering"><b>M&amp;S Catering</b>
- <nav><a href="#cenas">Cenas</a><a href="#bites">Bocaditos</a><a href="#tablas">Tablas</a><a href="#dulces">Dulces</a><a href="#eventos">Eventos</a><a href="#pagos">Pagos</a></nav>
-</div></header>
+ <a href="#inicio" class="brand"><img src="logo.png" alt="M&amp;S Catering"><b>M&amp;S Catering</b></a>
+ <button class="navcart" id="navCart" aria-label="Ver pedido">🛒 <span id="navN">0</span></button>
+</div>
+<nav class="tabs wrap" id="tabs">
+ <a href="#inicio" data-tab="inicio">Inicio</a>
+ <a href="#navidad" data-tab="navidad" class="season" id="tabSeason">🎄 Especial Navidad</a>
+ <a href="#carta" data-tab="carta">Carta</a>
+ <a href="#eventos" data-tab="eventos">Eventos y regalos</a>
+ <a href="#contacto" data-tab="contacto">Pagos y contacto</a>
+</nav></header>
 
-<div class="hero"><div class="wrap">
- <div>
-  <div class="kick">Catálogo navideño 2026 · Lima</div>
-  <h1>Esta Navidad,<span class="script">nosotros cocinamos</span></h1>
-  <p>Cenas navideñas, bocaditos, tablas gourmet y dulces hechos con cariño. Elige tus packs aquí y envíanos tu pedido por WhatsApp en un toque.</p>
-  <div class="chips">
-   <a class="btn" href="#cenas">Ver el menú</a>
-   <a class="btn ghost" id="waTop" href="#">Escríbenos</a>
+<!-- ============ INICIO ============ -->
+<section class="page-s" id="p-inicio">
+ <div class="hero"><div class="wrap">
+  <div>
+   <div class="kick">Pastas · Grill · Pastelería · Lima</div>
+   <h1>Sabor y tradición<span class="script">en cada plato</span></h1>
+   <p>Panceta a la caja china, platos al carbón, chicharrones, lasagnas, buffet criollo, comida arequipeña, tablas, postres y catering para tus eventos. Elige aquí y envíanos tu pedido por WhatsApp.</p>
+   <div class="chips"><a class="btn" href="#carta">Ver la carta</a><a class="btn ghost" id="waTop" href="#">Escríbenos</a></div>
+  </div>
+  <div class="pic">
+   <img class="big" src="panceta.jpg" alt="Panceta a la caja china">
+   <img class="sm" src="causa.jpg" alt="Causa rellena" style="left:-6%;bottom:-2%">
+   <img class="sm" src="torta.jpg" alt="Torta" style="right:-4%;bottom:6%;width:26%">
+  </div>
+ </div></div>
+
+ <div class="wrap">
+  <a href="#navidad" class="promo" id="promoSeason">
+   <img src="cena4.jpg" alt="">
+   <div><div class="kick" style="color:#fff;opacity:.9">Especial de temporada</div>
+    <div class="ptitle">🎄 Navidad 2026</div>
+    <div>Cenas navideñas desde <b>S/ 220</b>, Christmas Bites desde <b>S/ 75</b>, tablas y dulces.</div>
+    <span class="btn" style="background:#fff;color:var(--red);margin-top:12px">Ver especial →</span></div>
+  </a>
+
+  <h2 class="h2">¿Qué se te antoja?</h2>
+  <div class="tiles" id="tiles"></div>
+
+  <h2 class="h2">¿Cómo pedir?</h2>
+  <div class="steps">
+   <div><i>1</i><b>Elige</b><span>tus productos en la carta</span></div>
+   <div><i>2</i><b>Envía</b><span>tu pedido por WhatsApp en un toque</span></div>
+   <div><i>3</i><b>Confirma</b><span>te respondemos con precio final, delivery y pago</span></div>
   </div>
  </div>
- <div class="pic">
-  <img class="big" src="cena4.jpg" alt="Cena navideña con pavo">
-  <img class="sm" src="corona.jpg" alt="Corona de delicias" style="left:-6%;bottom:-2%">
-  <img class="sm" src="keke.jpg" alt="Keke navideño" style="right:-4%;bottom:6%;width:26%">
- </div>
-</div></div>
-
-<main class="wrap">
-
-<section class="cat" id="cenas">
- <div class="cat-head"><img src="cena4.jpg" alt=""><div><div class="kick">Packs 09 · 10 · 11</div><h2>Cena Navideña</h2>
- <p>2 carnes, 1 arroz, 2 purés y 1 ensalada a tu elección.</p></div></div>
- <div class="grid" id="g-cenas"></div>
 </section>
 
-<section class="cat" id="bites">
- <div class="cat-head"><img src="bites.jpg" alt=""><div><div class="kick">Packs 05 al 08</div><h2>Christmas Bites</h2>
- <p>Arma tu pack de bocaditos y comparte esta Navidad.</p></div></div>
- <div class="grid" id="g-bites"></div>
- <div class="menu">
-  <div style="background:var(--green)"><b>SALADOS</b><ul id="m-sal"></ul></div>
-  <div style="background:var(--red)"><b>DULCES</b><ul id="m-dul"></ul></div>
-  <div style="background:#8A6A4F"><b>ESPECIALES</b><div style="font-size:14px;opacity:.9">Solicita tu cotización</div><ul id="m-esp"></ul></div>
- </div>
- <div class="note">Pedido mínimo por bocadito: <b>10 unidades</b>. Escribe en tu pedido qué bocaditos prefieres.</div>
-</section>
-
-<section class="cat" id="tablas">
- <div class="cat-head"><img src="corona.jpg" alt=""><div><div class="kick">Packs 03 · 04</div><h2>Tablas gourmet</h2>
- <p>El centro perfecto para tus reuniones navideñas.</p></div></div>
- <div class="grid" id="g-tablas"></div>
-</section>
-
-<section class="cat" id="dulces">
- <div class="cat-head"><img src="keke.jpg" alt=""><div><div class="kick">Packs 01 · 02</div><h2>Dulces navideños</h2>
- <p>Para tu mesa o para regalar.</p></div></div>
- <div class="grid" id="g-dulces"></div>
-</section>
-
-<section class="cat" id="eventos">
- <div class="kick">Hecho por nosotros</div><h2 style="font-size:clamp(32px,5vw,44px);margin:4px 0 8px">Eventos y regalos corporativos</h2>
- <p style="margin-bottom:16px">Buffets para empresas, panceta a la caja china, lasagnas, cajas de regalo para tu equipo y más.</p>
- <div class="gal">
-  <img src="g0009.jpg" alt="Buffet navideño corporativo" loading="lazy"><img src="g0020.jpg" alt="Keke navideño en caja" loading="lazy">
-  <img src="g0012.jpg" alt="Bandeja de cena" loading="lazy"><img src="g0017.jpg" alt="Árbol de bocaditos" loading="lazy">
-  <img src="g0047.jpg" alt="Tabla de charcutería" loading="lazy"><img src="g0052.jpg" alt="Caja china" loading="lazy">
-  <img src="g0025.jpg" alt="Mesa de evento" loading="lazy"><img src="g0041.jpg" alt="Caja de regalo" loading="lazy">
- </div>
- <div style="margin-top:16px"><a class="btn red" id="waCorp" href="#">Pedir cotización para mi empresa</a></div>
-</section>
-
-<section class="cat" id="pagos">
- <h2 style="font-size:clamp(32px,5vw,44px);margin-bottom:14px">Pagos y contacto</h2>
- <div class="pay">
-  <div class="item"><b style="color:var(--red)">Medios de pago</b>
-   <div id="accs"></div>
-   <div class="desc">Pagos solo por transferencia bancaria, Yape o Plin. Precios no incluyen delivery.</div></div>
-  <div class="item"><b style="color:var(--red)">Contacto</b>
-   <div class="acc"><b>WhatsApp</b><a id="waNum" href="#" style="color:var(--green);font-weight:700">+51 997 840 228</a></div>
-   <div class="acc"><b>Correo</b><a href="mailto:myscatering@gmail.com" style="color:var(--ink)">myscatering@gmail.com</a></div>
-   <div class="acc"><b>Facebook</b><a href="https://www.facebook.com/profile.php?id=100044279238014" target="_blank" rel="noopener" style="color:var(--ink)">M&amp;S Catering.</a></div>
-   <div class="acc"><b>Zona</b><span>Santiago de Surco, Lima</span></div></div>
+<!-- ============ NAVIDAD ============ -->
+<section class="page-s" id="p-navidad">
+ <div class="wrap">
+  <div class="sbanner"><img src="cena4.jpg" alt=""><div><div class="kick">Especial de temporada · Packs 01 al 11</div><h1 style="font-size:clamp(40px,7vw,64px)">Esta Navidad,<span class="script" style="display:block">nosotros cocinamos</span></h1></div></div>
+  <section class="cat" id="cenas"><div class="cat-head"><img src="cena4.jpg" alt=""><div><h2>Cena Navideña</h2><p>2 carnes, 1 arroz, 2 purés y 1 ensalada a tu elección.</p></div></div><div class="grid" id="g-cenas"></div></section>
+  <section class="cat" id="bites"><div class="cat-head"><img src="bites.jpg" alt=""><div><h2>Christmas Bites</h2><p>Arma tu pack de bocaditos y comparte esta Navidad.</p></div></div><div class="grid" id="g-bites"></div>
+   <div class="note">Pedido mínimo por bocadito: <b>10 unidades</b>. Mira la lista de bocaditos en la <a href="#carta-bocaditos">carta</a> y escribe en tu pedido cuáles prefieres.</div></section>
+  <section class="cat"><div class="cat-head"><img src="corona.jpg" alt=""><div><h2>Tablas navideñas</h2><p>El centro perfecto para tus reuniones.</p></div></div><div class="grid" id="g-tablas"></div></section>
+  <section class="cat"><div class="cat-head"><img src="keke.jpg" alt=""><div><h2>Dulces navideños</h2><p>Para tu mesa o para regalar.</p></div></div><div class="grid" id="g-dulces"></div></section>
  </div>
 </section>
-</main>
 
-<footer>© 2026 M&amp;S Catering · Pastas · Grill · Pastelería</footer>
+<!-- ============ CARTA ============ -->
+<section class="page-s" id="p-carta">
+ <div class="wrap">
+  <div class="kick" style="margin-top:28px">Todo el año</div><h1 style="font-size:clamp(40px,7vw,60px)">Nuestra carta</h1>
+  <p class="desc" style="margin-top:6px">Precios según cantidad y fecha. Agrega lo que te interesa y te enviamos la cotización por WhatsApp.</p>
+  <div class="catnav" id="catnav"></div>
+  <div id="carta"></div>
+  <section class="cat" id="carta-bocaditos"><div class="cat-head"><img src="bites.jpg" alt=""><div><h2>Bocaditos para eventos</h2><p>Salados y dulces · pedido mínimo 10 unidades por bocadito.</p></div></div>
+   <div class="menu">
+    <div style="background:var(--green)"><b>SALADOS</b><ul id="m-sal"></ul></div>
+    <div style="background:var(--red)"><b>DULCES</b><ul id="m-dul"></ul></div>
+    <div style="background:#8A6A4F"><b>ESPECIALES</b><div style="font-size:14px;opacity:.9">Solicita tu cotización</div><ul id="m-esp"></ul></div>
+   </div>
+   <div class="grid" id="g-bocaditos" style="margin-top:14px"></div>
+  </section>
+  <section class="cat" id="especial"><div class="espbox">
+   <img src="especial.jpg" alt="">
+   <div style="flex:1">
+    <div class="kick">¿No encuentras lo que buscas?</div>
+    <h2 style="font-size:clamp(30px,5vw,40px);margin:4px 0 6px">✍️ Pedidos especiales</h2>
+    <p class="desc">Cuéntanos qué plato quieres (lomo saltado, arroz con pato, rocoto relleno, un menú para tu evento…) y te enviamos la cotización por WhatsApp.</p>
+    <div class="f"><label for="eDish">¿Qué plato o producto quieres?</label><input id="eDish" placeholder="Ej. Rocoto relleno, arroz con pato, torta de chocolate…"></div>
+    <div class="f2">
+     <div class="f"><label for="ePeople">¿Para cuántas personas?</label><input id="ePeople" placeholder="Ej. 20 personas"></div>
+     <div class="f"><label for="eDate">¿Para qué fecha?</label><input id="eDate" type="date"></div>
+    </div>
+    <div class="f"><label for="eNotes">Detalles (opcional)</label><textarea id="eNotes" rows="2" placeholder="Ej. sin picante, en bandejas, para recoger"></textarea></div>
+    <p class="warn" id="eWarn"></p>
+    <button class="btn red" id="eAdd" style="margin-top:6px">Agregar a mi pedido</button>
+   </div></div></section>
+
+ </div>
+</section>
+
+<!-- ============ EVENTOS ============ -->
+<section class="page-s" id="p-eventos">
+ <div class="wrap">
+  <div class="kick" style="margin-top:28px">Hecho por nosotros</div><h1 style="font-size:clamp(40px,7vw,60px)">Eventos y regalos</h1>
+  <p style="margin:8px 0 18px">Buffets criollos, mesas de piqueos, panceta a la caja china, lasagnas y cajas de regalo para tu familia, tu equipo o tus clientes. Cuéntanos tu evento y te armamos una propuesta.</p>
+  <div class="grid" id="g-eventos"></div>
+  <h2 class="h2">Galería</h2>
+  <div class="gal">
+   <img src="g0009.jpg" alt="Buffet navideño corporativo" loading="lazy"><img src="g0028.jpg" alt="Mesa de piqueos" loading="lazy">
+   <img src="criollo.jpg" alt="Buffet criollo" loading="lazy"><img src="g0017.jpg" alt="Árbol de bocaditos" loading="lazy">
+   <img src="g0047.jpg" alt="Tabla de charcutería" loading="lazy"><img src="g0052.jpg" alt="Caja china" loading="lazy">
+   <img src="g0020.jpg" alt="Keke en caja de regalo" loading="lazy"><img src="g0012.jpg" alt="Bandeja de cena" loading="lazy">
+  </div>
+  <div style="margin-top:16px"><a class="btn red" id="waCorp" href="#">Pedir cotización para mi evento</a></div>
+ </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="page-s" id="p-contacto">
+ <div class="wrap">
+  <h1 style="font-size:clamp(40px,7vw,60px);margin:28px 0 14px">Pagos y contacto</h1>
+  <div class="pay">
+   <div class="item"><b style="color:var(--red)">Medios de pago</b><div id="accs"></div>
+    <div class="desc">Pagos solo por transferencia bancaria, Yape o Plin. Precios no incluyen delivery.</div></div>
+   <div class="item"><b style="color:var(--red)">Contacto</b>
+    <div class="acc"><b>WhatsApp</b><a id="waNum" href="#" style="color:var(--green);font-weight:700">+51 997 840 228</a></div>
+    <div class="acc"><b>Correo</b><a href="mailto:myscatering@gmail.com" style="color:var(--ink)">myscatering@gmail.com</a></div>
+    <div class="acc"><b>Facebook</b><a href="https://www.facebook.com/profile.php?id=100044279238014" target="_blank" rel="noopener" style="color:var(--ink)">M&amp;S Catering.</a></div>
+    <div class="acc"><b>Zona</b><span>Santiago de Surco, Lima</span></div></div>
+  </div>
+ </div>
+</section>
+
+<footer>© <span id="yr">2026</span> M&amp;S Catering · Pastas · Grill · Pastelería · Santiago de Surco, Lima</footer>
 
 <div class="bar" id="bar"><div class="wrap">
  <div class="t"><span id="barN">0 productos</span><br><b id="barT">S/ 0</b></div>
@@ -217,135 +346,271 @@ footer{text-align:center;color:var(--muted);padding:40px 16px 20px;font-size:15p
  <h2>Tu pedido</h2>
  <div id="lines"></div>
  <div class="total"><b>Total (sin delivery)</b><span class="price" id="tot">S/ 0</span></div>
+ <div class="desc" id="totNote" style="font-size:14px;text-align:right"></div>
  <div class="f"><label for="fn">Nombre</label><input id="fn" autocomplete="name" placeholder="Tu nombre"></div>
  <div class="f"><label for="fd">¿Para qué fecha?</label><input id="fd" type="date"></div>
  <div class="f"><label>Entrega</label><div class="seg">
   <label><input type="radio" name="ent" value="Delivery" checked> Delivery</label>
   <label><input type="radio" name="ent" value="Recojo"> Recojo</label></div></div>
  <div class="f" id="fdist"><label for="fa">Distrito / dirección</label><input id="fa" placeholder="Ej. Surco, Av. ..."></div>
- <div class="f"><label for="fm">Comentarios (bocaditos, horario, etc.)</label><textarea id="fm" rows="3" placeholder="Ej. bocaditos: empanaditas, triples y trufas"></textarea></div>
+ <div class="f"><label for="fm">Comentarios (cantidad de personas, bocaditos, horario…)</label><textarea id="fm" rows="3" placeholder="Ej. somos 20 personas; bocaditos: empanaditas y trufas"></textarea></div>
  <p class="warn" id="cartWarn"></p>
  <button class="btn" id="send" style="width:100%;justify-content:center;margin-top:8px;background:#25A244">
   <svg viewBox="0 0 32 32"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.4 3.4 14.6 14.6 0 0 0 5.6 4.9c2.1.9 2.9 1 4 .8a3.4 3.4 0 0 0 2.2-1.6 2.8 2.8 0 0 0 .2-1.6c-.1-.1-.3-.2-.6-.4z"/></svg>
   Enviar pedido por WhatsApp</button>
- <p class="desc" style="margin-top:10px;font-size:14px;color:var(--muted)">Se abrirá WhatsApp con tu pedido listo. Te confirmaremos disponibilidad, delivery y pago.</p>
+ <p class="desc" style="margin-top:10px;font-size:14px;color:var(--muted)">Se abrirá WhatsApp con tu pedido listo. Te confirmaremos precio final, disponibilidad, delivery y pago.</p>
 </div></div>
+
+<div class="modal" id="cena" role="dialog" aria-modal="true" aria-label="Arma tu cena"><div class="sheet">
+ <button class="x2" id="cenaX" aria-label="Cerrar">×</button>
+ <div class="scroll" id="cenaBody"></div>
+ <div class="foot2"><button class="btn" id="cenaOk" disabled>Agregar</button></div>
+</div></div>
+<div class="modal" id="added" role="dialog" aria-modal="true" aria-label="Agregado"><div class="sheet"><div class="scroll" style="padding-bottom:20px">
+ <div id="addedBody"></div>
+ <div class="abtns"><button class="btn ghost" id="addedMore">Seguir eligiendo</button><button class="btn" id="addedCart">Ver pedido</button></div>
+</div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
+// =====================================================================
+//  M&S Catering – configuración fácil de editar
+// =====================================================================
 const WA = "51997840228";
-const waLink = t => "https://wa.me/" + WA + "?text=" + encodeURIComponent(t);
+
+// Temporada especial: se muestra solo entre estas fechas (AAAA-MM-DD).
+// Para el próximo año, cambia las fechas. Fuera de fechas, la sección se oculta sola.
+const SEASON = { id:"navidad", start:"2026-11-01", end:"2026-12-31" };
+
+// Medios de pago
+const ACC=[["BCP Soles","194-96613884-079"],["BBVA Soles","0011-0814-0205324173"],["Interbank","8213476366770"],["Yape / Plin","997 840 228"]];
+
+// Carta de todo el año. p:null = "Precio a consultar". Para poner precio: p:45
+const CARTA = [
+ {cat:"Platos al carbón y caja china", icon:"🔥", items:[
+  {id:"panceta", t:"Panceta a la caja china", sub:"Crocante por fuera, jugosa por dentro", desc:"Nuestra especialidad. Ideal para reuniones y eventos: pídela por kilo o para tu número de invitados.", p:null, img:"panceta"},
+  {id:"asado", t:"Asado al horno", sub:"Cerdo o res, para compartir", desc:"Pieza entera horneada con especias, lista para servir.", p:null, img:"asado"},
+  {id:"pollo", t:"Pollo o pavo al horno", sub:"Entero, dorado y jugoso", desc:"Perfecto para almuerzos familiares y celebraciones.", p:null, img:"pollo"},
+ ]},
+ {cat:"Chicharrones", icon:"🥓", items:[
+  {id:"chicharron", t:"Chicharrón", sub:"Por kilo o en bandeja", desc:"Chicharrón crocante para tu desayuno, reunión o evento.", p:null, img:"chicharron"},
+ ]},
+ {cat:"Pastas", icon:"🍝", items:[
+  {id:"lasagna", t:"Lasagna", sub:"En bandeja para compartir", desc:"Lasagna casera gratinada. Consulta tamaños y sabores.", p:null, img:"lasagna"},
+ ]},
+ {cat:"Buffet criollo y comida arequipeña", icon:"🍲", items:[
+  {id:"criollo", t:"Buffet criollo", sub:"Varios platos en ollas de barro", desc:"Lo mejor de nuestra gastronomía para tu evento. Tú eliges los platos.", p:null, img:"criollo"},
+  {id:"aji", t:"Ají de gallina", sub:"En olla de barro o bandeja", desc:"El clásico criollo, con huevo, aceituna y pecanas.", p:null, img:"aji"},
+  {id:"causa", t:"Causa rellena", sub:"Fuente para compartir", desc:"Causa limeña rellena y decorada, ideal para buffets.", p:null, img:"causa"},
+  {id:"arequipena", t:"Comida arequipeña", sub:"Platos típicos para compartir", desc:"Pregúntanos por los platos arequipeños disponibles.", p:null, img:"ollas"},
+ ]},
+ {cat:"Tablas de queso y jamones", icon:"🧀", items:[
+  {id:"tabla", t:"Tabla de quesos y jamones", sub:"Para 6, 10 o más personas", desc:"Selección de quesos, jamones, frutas y frutos secos.", p:null, img:"tabla"},
+  {id:"mesa", t:"Mesa de piqueos", sub:"Para eventos y cumpleaños", desc:"Mesa decorada con tablas, bocaditos y dips.", p:null, img:"tabla2"},
+ ]},
+ {cat:"Postres", icon:"🎂", items:[
+  {id:"torta", t:"Tortas", sub:"Para cumpleaños y celebraciones", desc:"Cuéntanos la ocasión, el tamaño y el sabor.", p:null, img:"torta"},
+  {id:"crema", t:"Crema volteada", sub:"Entera", desc:"Postre casero tradicional, suave y con caramelo.", p:null, img:"crema"},
+  {id:"pie", t:"Pies y tartas", sub:"Enteros", desc:"Pies caseros horneados. Consulta sabores disponibles.", p:null, img:"pie"},
+ ]},
+];
+const BOCADITOS=[{id:"bocaditos", t:"Bocaditos para eventos", sub:"Salados y dulces, por ciento", desc:"Elige tus bocaditos de la lista y dinos cuántos necesitas.", p:null, img:"bites"}];
+const EVENTOS=[
+ {id:"buffet", t:"Buffet para eventos", sub:"Sociales y corporativos", desc:"Buffets criollos, de carnes o navideños, con montaje.", p:null, img:"buffet"},
+ {id:"boxcorp", t:"Cajas de regalo corporativas", sub:"Para colaboradores y clientes", desc:"Cajas personalizadas con productos gourmet y tu tarjeta.", p:null, img:"boxcorp"},
+ {id:"box", t:"Cajas de regalo y desayunos", sub:"Cumpleaños y fechas especiales", desc:"Sorprende a alguien especial con una caja de regalo.", p:null, img:"box"},
+];
+
+// Especial de Navidad (con precio)
 const CARNES = ["Pechuga de pavo horneada","Enrollado de pollo (guindones c/ tocino o jamón y queso)","Panceta a la caja china"];
-const P = [
- {id:"09",cat:"cenas",t:"Cena Navideña · 4 personas",sub:"Carnes 500 g c/u · guarniciones 500 g · ensalada 500 g",p:220,img:"cena4",cena:{
-   carnes:CARNES, arroz:["Arroz árabe","Arroz con aceitunas","Arroz pilaf"], pure:["Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada alemana","Ensalada rusa"]}},
- {id:"10",cat:"cenas",t:"Cena Navideña · 6 personas",sub:"Pavo o enrollado 800 g · panceta 1 kg · puré de papa 750 g · ensalada 500 g",p:360,img:"cena",cena:{
-   carnes:["Pavo","Enrollado de pollo (guindones c/ tocino o jamón y queso)","Panceta a la caja china"], arroz:["Arroz árabe","Arroz con aceitunas"], pure:["Puré de papa","Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada de papas"]}},
- {id:"11",cat:"cenas",t:"Cena Navideña · 8 personas",sub:"Pavo 1 kg · enrollado 1 kg · panceta 1.5 kg · arroz 1 kg · puré 500 g",p:420,img:"cena4",cena:{
-   carnes:CARNES, arroz:["Arroz árabe","Arroz con aceitunas","Arroz pilaf"], pure:["Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada alemana","Ensalada rusa"]}},
- {id:"05",cat:"bites",t:"Christmas Bites · 50 unidades",sub:"50 bocaditos salados",p:75},
- {id:"06",cat:"bites",t:"Christmas Bites · 75 unidades",sub:"50 salados + 25 dulces",p:100},
- {id:"07",cat:"bites",t:"Christmas Bites · 100 unidades",sub:"50 salados + 50 dulces",p:150},
- {id:"08",cat:"bites",t:"Christmas Bites · 250 unidades",sub:"150 salados + 100 dulces",p:280},
- {id:"03",cat:"tablas",t:"Corona de Delicias",sub:"Tabla de charcutería en forma de corona",desc:"Selección de quesos, embutidos y frutos secos. ¡Perfecta para compartir!",p:120,img:"corona"},
- {id:"04",cat:"tablas",t:"Árbol Gourmet",sub:"Tabla de charcutería en forma de árbol",desc:"Selección de quesos, embutidos y frutos secos. ¡Ideal para tus reuniones!",p:120,img:"arbol"},
- {id:"01",cat:"dulces",t:"Keke Navideño",sub:"8 porciones · molde 25 cm",desc:"Suave cobertura blanca con frutos rojos, cítricos confitados, frutos secos y especias.",p:50,img:"keke"},
- {id:"02",cat:"dulces",t:"Alfajorcitos Navideños",sub:"18 unidades",desc:"Galletitas de maicena rellenas de manjar blanco. ¡El detalle perfecto para regalar!",p:20,img:"alfajor"},
+const XMAS = [
+ {id:"09",grp:"cenas",t:"Cena Navideña · 4 personas",sub:"Carnes 500 g c/u · guarniciones 500 g · ensalada 500 g",p:220,img:"cena4",cena:{carnes:CARNES, arroz:["Arroz árabe","Arroz con aceitunas","Arroz pilaf"], pure:["Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada alemana","Ensalada rusa"]}},
+ {id:"10",grp:"cenas",t:"Cena Navideña · 6 personas",sub:"Pavo o enrollado 800 g · panceta 1 kg · puré de papa 750 g · ensalada 500 g",p:360,img:"cena",cena:{carnes:["Pavo","Enrollado de pollo (guindones c/ tocino o jamón y queso)","Panceta a la caja china"], arroz:["Arroz árabe","Arroz con aceitunas"], pure:["Puré de papa","Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada de papas"]}},
+ {id:"11",grp:"cenas",t:"Cena Navideña · 8 personas",sub:"Pavo 1 kg · enrollado 1 kg · panceta 1.5 kg · arroz 1 kg · puré 500 g",p:420,img:"cena4",cena:{carnes:CARNES, arroz:["Arroz árabe","Arroz con aceitunas","Arroz pilaf"], pure:["Puré de manzana","Puré de camote"], ens:["Ensalada Waldorf","Ensalada alemana","Ensalada rusa"]}},
+ {id:"05",grp:"bites",t:"Christmas Bites · 50 unidades",sub:"50 bocaditos salados",p:75},
+ {id:"06",grp:"bites",t:"Christmas Bites · 75 unidades",sub:"50 salados + 25 dulces",p:100},
+ {id:"07",grp:"bites",t:"Christmas Bites · 100 unidades",sub:"50 salados + 50 dulces",p:150},
+ {id:"08",grp:"bites",t:"Christmas Bites · 250 unidades",sub:"150 salados + 100 dulces",p:280},
+ {id:"03",grp:"tablas",t:"Corona de Delicias",sub:"Tabla de charcutería en forma de corona",desc:"Selección de quesos, embutidos y frutos secos. ¡Perfecta para compartir!",p:120,img:"corona"},
+ {id:"04",grp:"tablas",t:"Árbol Gourmet",sub:"Tabla de charcutería en forma de árbol",desc:"Selección de quesos, embutidos y frutos secos. ¡Ideal para tus reuniones!",p:120,img:"arbol"},
+ {id:"01",grp:"dulces",t:"Keke Navideño",sub:"8 porciones · molde 25 cm",desc:"Suave cobertura blanca con frutos rojos, cítricos confitados, frutos secos y especias.",p:50,img:"keke"},
+ {id:"02",grp:"dulces",t:"Alfajorcitos Navideños",sub:"18 unidades",desc:"Galletitas de maicena rellenas de manjar blanco. ¡El detalle perfecto para regalar!",p:20,img:"alfajor"},
 ];
 const SAL=["Mini empanaditas de carne/pollo","Petipán de pollo con apio/durazno","Sanguchito de huevo con tocino","Triple de pollo, durazno, jamón y queso","Triple de pollo con pecanas, jamón y queso","Triple de huevo, tocino, jamón y queso","Minicroissant de jamón y queso","Mini hamburguesitas","Enrollado de hotdog"];
 const DUL=["Mini piononitos","Mini alfajorcitos","Trufas navideñas","Mini brownies","Mini pie de limón"];
 const ESP=["Alitas","Mini brocheta de pollo","Langostinos al panko","Tequeños de lomo"];
-const ACC=[["BCP Soles","194-96613884-079"],["BBVA Soles","0011-0814-0205324173"],["Interbank","8213476366770"],["Yape / Plin","997 840 228"]];
+// =====================================================================
 
 const $=s=>document.querySelector(s);
-const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let cart=[]; // {pid, qty, opts}
-
-function money(n){return "S/ "+n.toLocaleString("es-PE")}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t);
+function money(n){return "S/ "+n.toLocaleString("es-PE")}
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1800)}
 
-function optGroup(p,key,label,need,list){
-  const type=need===1?"radio":"checkbox";
-  return `<fieldset data-k="${key}" data-need="${need}"><legend>${label} <small>(elige ${need})</small></legend>`+
-   list.map(o=>`<label><input type="${type}" name="${p.id}-${key}" value="${esc(o)}"> ${esc(o)}</label>`).join("")+`</fieldset>`;
-}
+// ---------- temporada ----------
+const today=new Date().toISOString().slice(0,10);
+const forceSeason=/[?&]navidad/.test(location.search);
+const seasonOn = forceSeason || (today>=SEASON.start && today<=SEASON.end);
+const ESPECIAL={id:"especial",t:"Pedido especial",sub:"",p:null,img:"especial"};
+const ALL = [...(seasonOn?XMAS:[]), ...CARTA.flatMap(c=>c.items), ...BOCADITOS, ...EVENTOS, ESPECIAL];
+const P = id => ALL.find(x=>x.id===id);
+const tag = p => /^\d+$/.test(p.id) ? `<span class="tag">Pack ${p.id}</span>` : "";
+
+// ---------- tarjetas ----------
 function card(p){
   const img=p.img?`<img src="${p.img}.jpg" alt="${esc(p.t)}" loading="lazy">`:"";
-  let extra="";
-  if(p.cena){extra=`<button class="btn ghost" style="padding:8px 16px;font-size:15px;align-self:flex-start" data-toggle="${p.id}">Elegir opciones ▾</button>
-   <div class="opts" id="o-${p.id}">${optGroup(p,"carnes","Carnes",2,p.cena.carnes)}${optGroup(p,"arroz","Arroz",1,p.cena.arroz)}${optGroup(p,"pure","Purés",2,p.cena.pure)}${optGroup(p,"ens","Ensalada",1,p.cena.ens)}<div class="warn" id="w-${p.id}"></div></div>`;}
+  const btn=p.cena?`<button class="add" data-cena="${p.id}">Arma tu cena</button>`:`<button class="add" data-add="${p.id}">${p.p==null?"Consultar":"Agregar"}</button>`;
+  const price=p.p==null?`<span class="ask">Precio a consultar</span>`:`<span class="price"><small>S/</small>${p.p}</span>`;
+  const hint=p.cena?`<div class="hint">Tú eliges: 2 carnes · 1 arroz · 2 purés · 1 ensalada</div>`:"";
   return `<article class="item ${img?"has-img":""}">${img}<div class="${img?"body":""}" style="${img?"":"display:flex;flex-direction:column;gap:8px;flex:1"}">
-   <span class="tag">Pack ${p.id}</span><h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div>${p.desc?`<div class="desc">${esc(p.desc)}</div>`:""}
-   ${extra}
-   <div class="row"><span class="price"><small>S/</small>${p.p}</span><button class="add" data-add="${p.id}">Agregar</button></div></div></article>`;
+   ${tag(p)}<h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div>${p.desc?`<div class="desc">${esc(p.desc)}</div>`:""}${hint}
+   <div class="row">${price}${btn}</div></div></article>`;
 }
-for(const c of ["cenas","bites","tablas","dulces"]) $("#g-"+c).innerHTML=P.filter(p=>p.cat===c).map(card).join("");
+function slug(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-")}
+if(seasonOn){ for(const g of ["cenas","bites","tablas","dulces"]) $("#g-"+g).innerHTML=XMAS.filter(p=>p.grp===g).map(card).join(""); }
+$("#carta").innerHTML=CARTA.map(c=>`<section class="cat" id="carta-${slug(c.cat)}"><div class="cat-head"><img src="${c.items[0].img}.jpg" alt=""><div><h2>${c.icon} ${esc(c.cat)}</h2></div></div><div class="grid">${c.items.map(card).join("")}</div></section>`).join("");
+$("#catnav").innerHTML=[...CARTA.map(c=>`<a href="#carta-${slug(c.cat)}">${c.icon} ${esc(c.cat)}</a>`),`<a href="#carta-bocaditos">🥪 Bocaditos</a>`,`<a href="#especial">✍️ Pedido especial</a>`].join("");
+$("#g-bocaditos").innerHTML=BOCADITOS.map(card).join("");
+$("#g-eventos").innerHTML=EVENTOS.map(card).join("");
+$("#tiles").innerHTML=[...(seasonOn?[["#navidad","cena4","🎄 Especial Navidad","Cenas, bites, tablas y dulces"]]:[]),
+  ...CARTA.map(c=>["#carta-"+slug(c.cat),c.items[0].img,c.icon+" "+c.cat,c.items.map(i=>i.t).join(" · ")]),
+  ["#carta-bocaditos","bites","🥪 Bocaditos","Salados y dulces para eventos"],["#eventos","buffet","🎉 Eventos y regalos","Buffets y cajas de regalo"],["#especial","especial","✍️ Pedidos especiales","¿Quieres otro plato? Pídelo aquí"]]
+  .map(([h,img,t,s])=>`<a class="tile" href="${h}"><img src="${img}.jpg" alt="" loading="lazy"><div><b>${esc(t)}</b><span>${esc(s)}</span></div></a>`).join("");
 $("#m-sal").innerHTML=SAL.map(x=>`<li>${x}</li>`).join("");$("#m-dul").innerHTML=DUL.map(x=>`<li>${x}</li>`).join("");$("#m-esp").innerHTML=ESP.map(x=>`<li>${x}</li>`).join("");
 $("#accs").innerHTML=ACC.map(([a,b])=>`<div class="acc"><b>${a}</b><span>${b}<button class="copy" data-copy="${b.replace(/\s/g,"")}">copiar</button></span></div>`).join("");
+if(!seasonOn){$("#tabSeason").remove();$("#promoSeason").remove();$("#p-navidad").remove();}
+$("#yr").textContent=new Date().getFullYear();
 
-document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-toggle],[data-add],[data-copy],[data-rm],[data-inc],[data-dec]"); if(!t) return;
-  if(t.dataset.toggle){const o=$("#o-"+t.dataset.toggle);o.classList.toggle("on");t.textContent=o.classList.contains("on")?"Ocultar opciones ▴":"Elegir opciones ▾";}
-  if(t.dataset.add) add(t.dataset.add);
-  if(t.dataset.copy){navigator.clipboard&&navigator.clipboard.writeText(t.dataset.copy).then(()=>toast("Copiado ✓"),()=>{});}
-  if(t.dataset.rm){cart.splice(+t.dataset.rm,1);render();}
-  if(t.dataset.inc){cart[+t.dataset.inc].qty++;render();}
-  if(t.dataset.dec){const l=cart[+t.dataset.dec];l.qty--; if(l.qty<1) cart.splice(+t.dataset.dec,1);render();}
-});
-// limit checkbox count
-document.addEventListener("change",e=>{
-  const fs=e.target.closest("fieldset[data-need]"); if(!fs||e.target.type!=="checkbox") return;
-  const need=+fs.dataset.need, on=fs.querySelectorAll("input:checked");
-  if(on.length>need){e.target.checked=false;toast("Máximo "+need);}
-});
-function add(id){
-  const p=P.find(x=>x.id===id); let opts=null;
-  if(p.cena){
-    const box=$("#o-"+id), w=$("#w-"+id);
-    if(!box.classList.contains("on")){box.classList.add("on");box.previousElementSibling.textContent="Ocultar opciones ▴";w.textContent="Elige tus opciones y vuelve a tocar Agregar";return;}
-    opts={}; let ok=true;
-    box.querySelectorAll("fieldset").forEach(fs=>{const v=[...fs.querySelectorAll("input:checked")].map(i=>i.value);opts[fs.dataset.k]=v;if(v.length!==+fs.dataset.need) ok=false;});
-    if(!ok){w.textContent="Completa: 2 carnes, 1 arroz, 2 purés y 1 ensalada";return;}
-    w.textContent="";
+// ---------- páginas (pestañas) ----------
+function route(){
+  let h=location.hash.slice(1)||"inicio";
+  let page=h, anchor=null;
+  if(h.startsWith("carta-")||h==="especial"){page="carta";anchor=h;}
+  if(["cenas","bites"].includes(h)){page="navidad";anchor=h;}
+  if(!document.getElementById("p-"+page)) page="inicio";
+  document.querySelectorAll(".page-s").forEach(s=>s.classList.toggle("on",s.id==="p-"+page));
+  document.querySelectorAll("#tabs a").forEach(a=>a.classList.toggle("on",a.dataset.tab===page));
+  const el=anchor&&document.getElementById(anchor);
+  if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth"}),30); else window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route); route();
+
+// ---------- Arma tu cena ----------
+const GROUPS=[["carnes","Carnes","Elige 2 porciones · puedes repetir (ej. Panceta ×2)",2,"multi"],["arroz","Arroz","Elige 1",1,"one"],["pure","Purés","Elige 2 porciones · puedes repetir",2,"multi"],["ens","Ensalada","Elige 1",1,"one"]];
+let cm=null;
+const emptyOpts=()=>({carnes:{},arroz:"",pure:{},ens:""});
+const sum=o=>Object.values(o).reduce((a,b)=>a+b,0);
+function openCena(pid,editIndex=null){cm={pid,opts:editIndex!==null?JSON.parse(JSON.stringify(cart[editIndex].opts)):emptyOpts(),editIndex};drawCena();$("#cena").classList.add("on");document.body.style.overflow="hidden";}
+function closeCena(){$("#cena").classList.remove("on");document.body.style.overflow="";cm=null;}
+function drawCena(){
+  const p=P(cm.pid),o=cm.opts;
+  let h=`<div class="mhead"><img src="${p.img}.jpg" alt=""><div>${tag(p)}<h3>${esc(p.t)}</h3><div class="sub">${esc(p.sub)}</div></div></div>`;
+  for(const [k,label,help,need,kind] of GROUPS){
+    const done=kind==="multi"?sum(o[k]):(o[k]?1:0);
+    h+=`<div class="grp"><div class="ghead"><b>${label}</b><span class="cnt ${done===need?"ok":""}">${done} de ${need}${done===need?" ✓":""}</span></div><div class="help">${help}</div>`;
+    for(const opt of p.cena[k]){
+      if(kind==="multi"){const n=o[k][opt]||0,full=sum(o[k])>=need;
+        h+=`<div class="opt ${n?"sel":""}"><span>${esc(opt)}</span><div class="qty sm"><button data-om="${k}|${esc(opt)}|-1" ${n?"":"disabled"} aria-label="menos">−</button><span>${n}</span><button data-om="${k}|${esc(opt)}|1" ${full?"disabled":""} aria-label="más">+</button></div></div>`;}
+      else h+=`<button class="opt pick ${o[k]===opt?"sel":""}" data-oo="${k}|${esc(opt)}"><span>${esc(opt)}</span><i>${o[k]===opt?"✓":""}</i></button>`;
+    }
+    h+=`</div>`;
   }
-  const key=id+JSON.stringify(opts||{}); const ex=cart.find(l=>l.key===key);
-  if(ex) ex.qty++; else cart.push({key,pid:id,qty:1,opts});
-  render(); toast("Agregado ✓");
+  $("#cenaBody").innerHTML=h;
+  const miss=missing(o),b=$("#cenaOk");b.disabled=!!miss;
+  b.innerHTML=miss?`Falta: ${miss}`:(cm.editIndex!==null?"Guardar cambios":`Agregar al pedido · ${money(p.p)}`);
 }
-function optText(o){return o?`${o.carnes.join(" + ")} · ${o.arroz[0]} · ${o.pure.join(" + ")} · ${o.ens[0]}`:"";}
+function missing(o){const m=[];const c=2-sum(o.carnes);if(c>0)m.push(c===1?"1 carne":"2 carnes");if(!o.arroz)m.push("arroz");const q=2-sum(o.pure);if(q>0)m.push(q===1?"1 puré":"2 purés");if(!o.ens)m.push("ensalada");return m.join(", ");}
+function confirmCena(){
+  if(!cm||missing(cm.opts))return;const {pid,opts,editIndex}=cm;
+  if(editIndex!==null){const line=cart[editIndex],key=keyOf(pid,opts),other=cart.findIndex((l,i)=>i!==editIndex&&l.key===key);
+    if(other>=0){cart[other].qty+=line.qty;cart.splice(editIndex,1);}else{line.opts=opts;line.key=key;}
+    closeCena();render();toast("Cambios guardados ✓");return;}
+  closeCena();addLine(pid,opts);
+}
+
+// ---------- carrito ----------
+let cart=[];
+function keyOf(pid,opts){if(!opts)return pid;if(opts.dish)return "esp|"+Date.now()+Math.random();const s=o=>Object.keys(o).filter(k=>o[k]).sort().map(k=>k+":"+o[k]).join(",");return pid+"|"+s(opts.carnes)+"|"+opts.arroz+"|"+s(opts.pure)+"|"+opts.ens;}
+function mergeLine(pid,opts,qty){const key=keyOf(pid,opts),ex=cart.find(l=>l.key===key);if(ex)ex.qty+=qty;else cart.push({key,pid,qty,opts});return cart.find(l=>l.key===key);}
+function addLine(pid,opts){const l=mergeLine(pid,opts,1);render();showAdded(l);}
+const fmtMulti=o=>Object.keys(o).filter(k=>o[k]).map(k=>o[k]>1?`${k} ×${o[k]}`:k).join(" + ");
+const optText=o=>!o?"":o.dish?[o.people&&("Para "+o.people),o.date&&("Fecha: "+o.date),o.notes].filter(Boolean).join(" · "):`${fmtMulti(o.carnes)} · ${o.arroz} · ${fmtMulti(o.pure)} · ${o.ens}`;
+function totals(){let n=0,t=0,ask=0;for(const l of cart){const p=P(l.pid);n+=l.qty;if(p.p==null)ask+=l.qty;else t+=l.qty*p.p;}return {n,t,ask};}
+const lineLabel=(p,l)=>l&&l.opts&&l.opts.dish?`Pedido especial: ${l.opts.dish}`:(/^\d+$/.test(p.id)?`Pack ${p.id} – `:"")+p.t;
+function showAdded(l){
+  const p=P(l.pid),{n,t,ask}=totals();
+  $("#addedBody").innerHTML=`<div class="aok">✓ Agregado a tu pedido</div>
+   <div class="arow">${p.img?`<img src="${p.img}.jpg" alt="">`:`<div class="anum">${(p.t.match(/\d+/)||[""])[0]}<small>uds</small></div>`}
+   <div><b>${esc(l.opts&&l.opts.dish?l.opts.dish:p.t)}</b><div class="x">${/^\d+$/.test(p.id)?"Pack "+p.id:""}${l.opts?"<br>"+esc(optText(l.opts)):""}</div>
+   <div class="x">En tu pedido: <b>${l.qty}</b> · ${p.p==null?"precio a consultar":money(p.p)+" c/u"}</div></div></div>
+   ${p.p==null?`<div class="note" style="margin-top:12px">Te enviaremos el precio por WhatsApp. En "Comentarios" puedes indicar cantidad de personas o detalles.</div>`:""}
+   <div class="asum"><span>${n} ${n===1?"producto":"productos"} en tu pedido</span><b>${t?money(t):""}${ask?` <small style="font-size:${t?14:20}px">${t?"+ ":""}a cotizar</small>`:""}</b></div>`;
+  $("#added").classList.add("on");
+}
+const closeAdded=()=>$("#added").classList.remove("on");
 function render(){
-  const n=cart.reduce((a,l)=>a+l.qty,0), tot=cart.reduce((a,l)=>a+l.qty*P.find(p=>p.id===l.pid).p,0);
-  $("#bar").classList.toggle("on",n>0); $("#barN").textContent=n+(n===1?" producto":" productos"); $("#barT").textContent=money(tot); $("#tot").textContent=money(tot);
-  $("#lines").innerHTML=cart.length?cart.map((l,i)=>{const p=P.find(x=>x.id===l.pid);return `<div class="line"><div><b>${esc(p.t)}</b><div class="x">Pack ${p.id}${l.opts?" · "+esc(optText(l.opts)):""}</div>
-    <div class="qty" style="display:inline-flex;margin-top:6px"><button data-dec="${i}">−</button><span>${l.qty}</span><button data-inc="${i}">+</button></div></div>
-    <div style="text-align:right"><b>${money(l.qty*p.p)}</b><br><button data-rm="${i}">quitar</button></div></div>`}).join(""):`<p class="desc">Aún no agregaste productos.</p>`;
-  if(!n) $("#drawer").classList.remove("on");
+  const {n,t,ask}=totals();
+  $("#bar").classList.toggle("on",n>0);$("#barN").textContent=n+(n===1?" producto":" productos")+(ask?` (${ask} a cotizar)`:"");
+  $("#barT").textContent=t?money(t):"A cotizar";$("#tot").textContent=t?money(t):"A cotizar";$("#navN").textContent=n;$("#navCart").classList.toggle("on",n>0);
+  $("#totNote").textContent=ask?`+ ${ask} ${ask===1?"producto":"productos"} con precio a consultar`:"";
+  $("#lines").innerHTML=cart.length?cart.map((l,i)=>{const p=P(l.pid);return `<div class="line"><div style="flex:1"><b>${esc(l.opts&&l.opts.dish?"✍️ "+l.opts.dish:p.t)}</b><div class="x">${[/^\d+$/.test(p.id)?"Pack "+p.id:"",l.opts?esc(optText(l.opts)):""].filter(Boolean).join(" · ")}</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-top:6px"><div class="qty"><button data-dec="${i}" aria-label="menos">−</button><span>${l.qty}</span><button data-inc="${i}" aria-label="más">+</button></div>
+    ${l.opts&&!l.opts.dish?`<button class="edit" data-edit="${i}">✎ Editar</button>`:""}</div></div>
+    <div style="text-align:right"><b>${p.p==null?'<span class="ask" style="font-size:14px">a cotizar</span>':money(l.qty*p.p)}</b><br><button data-rm="${i}">quitar</button></div></div>`}).join(""):`<p class="desc">Aún no agregaste productos.</p>`;
+  if(!n)$("#drawer").classList.remove("on");
 }
-$("#openCart").onclick=()=>$("#drawer").classList.add("on");
-$("#closeCart").onclick=()=>$("#drawer").classList.remove("on");
-$("#drawer").onclick=e=>{if(e.target.id==="drawer") $("#drawer").classList.remove("on");};
+
+// ---------- eventos ----------
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-cena],[data-add],[data-copy],[data-rm],[data-inc],[data-dec],[data-edit],[data-om],[data-oo]");if(!t)return;const d=t.dataset;
+  if(d.cena)openCena(d.cena);
+  if(d.add)addLine(d.add,null);
+  if(d.copy){navigator.clipboard&&navigator.clipboard.writeText(d.copy).then(()=>toast("Copiado ✓"),()=>{});}
+  if(d.rm){cart.splice(+d.rm,1);render();}
+  if(d.inc){cart[+d.inc].qty++;render();}
+  if(d.dec){const l=cart[+d.dec];l.qty--;if(l.qty<1)cart.splice(+d.dec,1);render();}
+  if(d.edit)openCena(cart[+d.edit].pid,+d.edit);
+  if(d.om){const [k,opt,s]=d.om.split("|"),g=GROUPS.find(x=>x[0]===k),o=cm.opts[k],n=(o[opt]||0)+(+s);if(n<0||(+s>0&&sum(o)>=g[3]))return;if(n)o[opt]=n;else delete o[opt];drawCena();}
+  if(d.oo){const [k,opt]=d.oo.split("|");cm.opts[k]=opt;drawCena();}
+});
+$("#cenaOk").onclick=confirmCena;$("#cenaX").onclick=closeCena;$("#cena").onclick=e=>{if(e.target.id==="cena")closeCena();};
+$("#addedMore").onclick=closeAdded;$("#addedCart").onclick=()=>{closeAdded();$("#drawer").classList.add("on");};$("#added").onclick=e=>{if(e.target.id==="added")closeAdded();};
+const openDrawer=()=>{if(cart.length)$("#drawer").classList.add("on");else toast("Tu pedido está vacío");};
+$("#openCart").onclick=openDrawer;$("#navCart").onclick=openDrawer;
+$("#closeCart").onclick=()=>$("#drawer").classList.remove("on");$("#drawer").onclick=e=>{if(e.target.id==="drawer")$("#drawer").classList.remove("on");};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCena();closeAdded();$("#drawer").classList.remove("on");}});
 document.querySelectorAll("input[name=ent]").forEach(r=>r.onchange=()=>{$("#fdist").style.display=r.value==="Recojo"&&r.checked?"none":"flex";});
 $("#send").onclick=()=>{
-  if(!cart.length) return;
-  const name=$("#fn").value.trim(), date=$("#fd").value, ent=document.querySelector("input[name=ent]:checked").value, addr=$("#fa").value.trim(), msg=$("#fm").value.trim();
+  if(!cart.length)return;
+  const name=$("#fn").value.trim(),date=$("#fd").value,ent=document.querySelector("input[name=ent]:checked").value,addr=$("#fa").value.trim(),msg=$("#fm").value.trim();
   if(!name){$("#cartWarn").textContent="Escribe tu nombre, por favor.";$("#fn").focus();return;}
   $("#cartWarn").textContent="";
-  let t="Hola M&S Catering, quiero hacer este pedido navideño:\n\n";
-  let tot=0;
-  cart.forEach(l=>{const p=P.find(x=>x.id===l.pid);tot+=l.qty*p.p;
-    t+=`• ${l.qty} x Pack ${p.id} – ${p.t} (${money(l.qty*p.p)})\n`;
-    if(l.opts) t+=`   Carnes: ${l.opts.carnes.join(", ")}\n   Arroz: ${l.opts.arroz[0]}\n   Purés: ${l.opts.pure.join(", ")}\n   Ensalada: ${l.opts.ens[0]}\n`;});
-  t+=`\nTotal: ${money(tot)} (sin delivery)\n\nNombre: ${name}\n`;
-  if(date){const [y,m,d]=date.split("-");t+=`Fecha: ${d}/${m}/${y}\n`;}
-  t+=`Entrega: ${ent}${ent==="Delivery"&&addr?" – "+addr:""}\n`;
-  if(msg) t+=`Comentarios: ${msg}\n`;
-  window.open(waLink(t),"_blank");
+  const {t,ask}=totals();
+  let m="Hola M&S Catering, quiero hacer este pedido:\n\n";
+  cart.forEach(l=>{const p=P(l.pid);
+    m+=`• ${l.qty} x ${lineLabel(p,l)} (${p.p==null?"precio a cotizar":money(l.qty*p.p)})\n`;
+    if(l.opts&&l.opts.dish){const x=optText(l.opts);if(x)m+=`   ${x}\n`;}
+    else if(l.opts)m+=`   Carnes: ${fmtMulti(l.opts.carnes)}\n   Arroz: ${l.opts.arroz}\n   Purés: ${fmtMulti(l.opts.pure)}\n   Ensalada: ${l.opts.ens}\n`;});
+  m+=`\n${t?`Total: ${money(t)} (sin delivery)`:""}${ask?`${t?"\n":""}+ ${ask} ${ask===1?"producto":"productos"} a cotizar`:""}\n\nNombre: ${name}\n`;
+  if(date){const [y,mm,dd]=date.split("-");m+=`Fecha: ${dd}/${mm}/${y}\n`;}
+  m+=`Entrega: ${ent}${ent==="Delivery"&&addr?" – "+addr:""}\n`;
+  if(msg)m+=`Comentarios: ${msg}\n`;
+  window.open(waLink(m.replace(/ /g," ")),"_blank");
 };
-$("#waTop").href=waLink("Hola M&S Catering, quiero información sobre sus packs navideños.");
-$("#waNum").href=waLink("Hola M&S Catering, quiero hacer un pedido navideño.");
-$("#waCorp").href=waLink("Hola M&S Catering, quiero una cotización para un evento/regalos de mi empresa.");
+$("#waTop").href=waLink("Hola M&S Catering, quiero información sobre sus productos.");
+$("#waNum").href=waLink("Hola M&S Catering, quiero hacer un pedido.");
+$("#waCorp").href=waLink("Hola M&S Catering, quiero una cotización para un evento/regalos.");
 ["waTop","waNum","waCorp"].forEach(i=>{$("#"+i).target="_blank";$("#"+i).rel="noopener";});
-const today=new Date();$("#fd").min=today.toISOString().slice(0,10);
+$("#fd").min=today;$("#eDate").min=today;
+$("#eAdd").onclick=()=>{
+  const dish=$("#eDish").value.trim(),people=$("#ePeople").value.trim(),d=$("#eDate").value,notes=$("#eNotes").value.trim();
+  if(!dish){$("#eWarn").textContent="Escribe qué plato o producto quieres.";$("#eDish").focus();return;}
+  $("#eWarn").textContent="";
+  let date="";if(d){const [y,mm,dd]=d.split("-");date=`${dd}/${mm}/${y}`;}
+  const l={key:keyOf("especial",{dish}),pid:"especial",qty:1,opts:{dish,people,date,notes}};cart.push(l);render();showAdded(l);
+  ["#eDish","#ePeople","#eDate","#eNotes"].forEach(s=>$(s).value="");
+};
+render();
 </script>
 </body>
 </html>
