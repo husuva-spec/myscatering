@@ -557,7 +557,7 @@ const ESP=["Alitas","Mini brocheta de pollo","Langostinos al panko","Tequeños d
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const SITE="https://husuva-spec.github.io/myscatering/";
+const SITE="https://myscatering.com/";
 const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t.trimEnd()+"\n\nCatálogo y pedidos: "+SITE);
 function money(n){return "S/ "+n.toLocaleString("es-PE")}
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1800)}
@@ -819,7 +819,7 @@ function catPages(sp){
   const acc2=col[2]&&lum(col[2])<.36?col[2]:col[1];
   const name=String(sp.n||"").replace(/\s*\d{4}\s*$/,""), yr=(String(sp.n||"").match(/\d{4}\s*$/)||[""])[0].trim();
   const num=WA.replace(/^51/,"").replace(/(\d{3})(\d{3})(\d{3})/,"$1 $2 $3");
-  const foot=(i,n)=>`<div class="cfoot"><span>Pedidos por WhatsApp <b>+51 ${num}</b></span><span>husuva-spec.github.io/myscatering</span><span>${i} / ${n}</span></div>`;
+  const foot=(i,n)=>`<div class="cfoot"><span>Pedidos por WhatsApp <b>+51 ${num}</b></span><span>myscatering.com</span><span>${i} / ${n}</span></div>`;
   const top=`<div class="ctop"><img src="${IM("logo").replace(/\.jpg$/,".png")}" alt=""><b>M&amp;S Catering</b><span>${esc((sp.e||"")+" "+name)}</span></div>`;
   const im=k=>k?`<img src="${esc(IM(k))}" alt="" crossorigin="anonymous">`:"";
   const priced=items.filter(x=>x.p!=null).sort((a,b)=>a.p-b.p);
@@ -911,5 +911,3 @@ function CACHE_RAW_KEY(){try{const d=JSON.parse(CACHE_RAW||"null");return d?JSON
 </script>
 </body>
 </html>
-
-<!-- publicado 2026-11-10b -->
